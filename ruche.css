@@ -1,9 +1,31 @@
 body{
     background-color: #9ecdec;
-    /* background-image: url('icones/abeille.png');
-    background-size: 100px;
-    background-repeat: space repeat; */
+    text-align: center;
 }
+
+
+#Gauche{
+    top: 0px;
+}
+  .GaucheDiv {
+    width: 10vw;
+    height: 100vh;
+    position: fixed;
+    left: 1vw;
+  }
+  .GaucheDiv #imagecontainer {
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+    width:100%;
+  }
+  .GaucheDiv input[type=image] {
+    display:table-cell;
+    vertical-align:middle;
+    height: 20vh;
+    margin: 20px auto;
+    object-fit: contain;
+  }
 
 #Droite{
     top: 0px;
@@ -12,7 +34,7 @@ body{
     width: 10vw;
     height: 100vh;
     position: fixed;
-    right: 10vw;
+    right: 1vw;
   }
   .DroiteDiv #imagecontainer {
     display:table-cell;
