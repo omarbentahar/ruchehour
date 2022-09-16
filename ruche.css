@@ -22,7 +22,9 @@ body{
   .GaucheDiv input[type=image] {
     display:table-cell;
     vertical-align:middle;
-    height: 20vh;
+    width: auto;
+    max-width: 100%;
+    height: 20vh auto;
     margin: 20px auto;
     object-fit: contain;
   }
@@ -45,7 +47,9 @@ body{
   .DroiteDiv input[type=image] {
     display:table-cell;
     vertical-align:middle;
-    height: 20vh;
+    width: auto;
+    max-width: 100%;
+    height: 20vh auto;
     margin: 20px auto;
     object-fit: contain;
   }
