@@ -7,21 +7,135 @@
 
 
   <body>
+    <!-- Titre -->
     <h1 style="text-align:center;"></h1>
-    <p>Inspiré du <strong>Spelling Bee</strong> du NYT et transcrit en Français.</p>
+    <p><strong>Spelling Bee</strong> - Version Française</p>
     
-
-    <div id="Gauche" class="GaucheDiv">
+    <!-- Images des colonnes laterales -->
+    <div id="imagesgauche" class="imagesgaucheDiv">
       <div id="imagecontainer">
       </div>
     </div>
 
-    <div id="Droite" class="DroiteDiv">
+    <div id="imagesdroite" class="imagesdroiteDiv">
       <div id="imagecontainer">
       </div>
     </div>
 
+    <!-- Haut de page -->
+    <a name="top"></a>
+	  <div id="main">
+	    <p class="subtitle">Enhanced Free Software clone of The New York Times game Spelling Bee</p>
+	    <hr />
+		  <div class="navbar">
+		    <a href="/ruche.html">Ruche</a> |
+		    <a href="#top">Jeu</a> |
+		    <a href="/rules.html">Règles</a>
+		  </div>
+	    <hr />
+	  </div>
+    <h2 id="play">Play Free Bee on the Web</h2>
 
+    <!-- Aire de jeu -->
+    <div id="game">
+      <div id="playfield">
+	      <div id="playfield-bg">
+	        <img id="comb1" class="bg" src="icones/sidecomb.png"><img id="comb2" class="bg" src="icones/sidecomb.png"><img id="comb3" class="bg" src="icones/sidecomb.png"><img id="comb4" class="bg" src="icones/sidecomb.png"><img id="comb5" class="bg" src="icones/sidecomb.png"><img id="comb6" class="bg" src="icones/sidecomb.png"><img id="comb7" class="bg" src="icones/centercomb.png">
+	      </div>
+	      <div id="playfield-fg">
+	       <img id="play1" class="fg" width="60" height="100"><img id="play2" class="fg" width="60" height="100"><img id="play3" class="fg" width="60" height="100"><img id="play4" class="fg" width="60" height="100"><img id="play5" class="fg" width="60" height="100"><img id="play6" class="fg" width="60" height="100"><img id="play7" class="fg" width="60" height="100">
+	      </div>
+      </div>
+    </div>
+
+    <br />
+
+    <!-- Boutons -->
+    <div class="game-buttons">
+      <button onclick="shuffle()">Mélanger</button>
+      <button onclick="delete_letter()">Effacer</button>
+    </div>
+
+    <br />
+
+    <!-- Aire de proposition des mots -->
+    <div class="game-forms">
+      <form id="player-guess" onsubmit="check(); return false">
+	    <input type="text" id="guess" placeholder="Enter word">
+	    <input type="submit" value="Submit">
+      </form>
+    </div>
+    <hr>
+
+    <!-- Types de réponses du jeu -->
+    <div class="messages">
+      <span id="no-message" class="message">&nbsp;</span>
+      <span id="pangram" class="message">Pangramme!</span>
+      <span id="already-found" class="message">Mot déjà trouvé</span>
+      <span id="center-letter" class="message">Le mot doit contenir la lettre centrale</span>
+      <span id="too-short" class="message">Trop court!</span>
+      <span id="not-in-list" class="message">Ce mot n'existe pas dans notre dictionnaire</span>
+    </div>
+
+    <!-- Score -->
+    <div class="score">
+      <div class="points">
+	      <h4>Points</h4>
+	      <span id="points-update">0</span>
+      </div>
+      <div class="mots">
+        <h4>Mots trouvés</h4>
+        <span id="count-update">0/?</span>
+      </div>
+      <div class="rank">
+	      <h4>Rang</h4>
+	      <span id="rank-update">Tu sais pas jouer, Jack</span>
+      </div>
+    </div>
+    <br />
+
+    <!-- Ruche du jour -->
+    <div class="wordlists">
+      <div class="today-answers">
+	      <h4 class="answers">Mots trouvés</h4>
+	      <div class="update-answers">
+	        <div id="answers-update"></div>
+	      </div>
+      </div>
+      <div class="infos-ruche">
+	      <h4 class="answers">Infos sur la ruche</h4>
+	      <div id="ruche-infos"></div>
+      </div>
+    </div>
+    
+    <br />
+    <br />
+
+    <hr>
+    
+    <!-- Boutons pour la ruche de la veille -->
+    <div class="game-buttons">
+      <button onclick="show_yesterday_info()">Ruche de la veille</button>
+    </div>
+
+    <br />
+
+    <!-- Ruche de la veille -->
+
+    <!-- <div class="wordlists">
+      <div class="yesterday-answers">
+        <h4 class="answers">Mots de la veille</h4>
+	      <div class="update-answers">
+          <div id="answers-update"></div>
+	      </div>
+      </div>
+      <div class="infos-ruche">
+        <h4 id="infos-yesterday" class="answers">Ruche d'hier</h4>
+	      <div id="ruche-infos"></div>
+      </div>
+    </div>
+    <br />
+    <br /> -->
 
     <script src="ruche.js"></script>
   </body>

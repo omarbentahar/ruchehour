@@ -1,8 +1,8 @@
 const myHeading = document.querySelector('h1');
-myHeading.textContent = 'Hello world!';
+myHeading.textContent = 'Ruche Hour!';
 
-var gauche = document.getElementById('Gauche');
-var droite = document.getElementById('Droite');
+var gauche = document.getElementById('imagesgauche');
+var droite = document.getElementById('imagesdroite');
 
 function blockimages(alternate) {
     if (alternate) {
@@ -13,7 +13,7 @@ function blockimages(alternate) {
     }
 }
 
-for (var i = 0; i < 10; i++) {
+for (var i = 0; i < 6; i++) {
     gauche.innerHTML += blockimages(false);
     droite.innerHTML += blockimages(true);
 }

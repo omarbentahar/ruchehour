@@ -1,26 +1,28 @@
 body{
     background-color: #9ecdec;
     text-align: center;
+    max-width: 650px;
+    margin: auto auto 3em auto;
+    font-size: 100%;
 }
 
 
-
-#Gauche{
+#imagesgauche{
     top: 0px;
 }
-  .GaucheDiv {
+  .imagesgaucheDiv {
     width: 10vw;
     height: 100vh;
-    position: fixed;
+    position: absolute;
     left: 1vw;
   }
-  .GaucheDiv #imagecontainer {
+  .imagesgaucheDiv #imagecontainer {
     display:table-cell;
     text-align:center;
     vertical-align:middle;
     width:100%;
   }
-  .GaucheDiv input[type=image] {
+  .imagesgaucheDiv input[type=image] {
     display:table-cell;
     vertical-align:middle;
     width: auto;
@@ -30,22 +32,23 @@ body{
     object-fit: contain;
   }
 
-#Droite{
+
+#imagesdroite{
     top: 0px;
 }
-  .DroiteDiv {
+  .imagesdroiteDiv {
     width: 10vw;
     height: 100vh;
-    position: fixed;
+    position: absolute;
     right: 1vw;
   }
-  .DroiteDiv #imagecontainer {
+  .imagesdroiteDiv #imagecontainer {
     display:table-cell;
     text-align:center;
     vertical-align:middle;
     width:100%;
   }
-  .DroiteDiv input[type=image] {
+  .imagesdroiteDiv input[type=image] {
     display:table-cell;
     vertical-align:middle;
     width: auto;
@@ -54,3 +57,154 @@ body{
     margin: 20px auto;
     object-fit: contain;
   }
+
+
+h1 {
+  margin-bottom: 0;
+}
+
+.subtitle {
+  text-align: right;
+  margin: 0;
+  font-style: italic;
+}
+
+h2, h3, h4 {
+  color: #000000;
+}
+
+hr {
+  border-color: #b0a133;
+}
+
+a, .subtitle {
+  color: #000000;
+}
+
+pre {
+  padding: .5em;
+  overflow: auto;
+}
+
+.navbar {
+  text-align: center;
+}
+
+.topbutton {
+  float: right;
+}
+
+#game {
+  width: 360px;
+  height: 450px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.game-buttons {
+  text-align: center;
+}
+
+.game-forms {
+  text-align: center;
+}
+
+.messages {
+  float: center;
+  text-align: center;
+}
+
+.message {
+  display: none;
+  color: #000000;
+}
+
+#no-message.message {
+  display: inline;
+}
+
+#pangram.message {
+  display: none;
+  color: #000000;
+}
+
+.score {
+  width: 100%;
+  height: 100px;
+}
+
+.points {
+  width: 30%;
+  height: 100%;
+  float: left;
+  text-align: center;
+}
+
+.mots{
+  width: 30%;
+  height: 100%;
+  float: left;
+  text-align: center;
+}
+
+.rank {
+  width: 30%;
+  height: 100%;
+  float: left;
+  text-align: center;
+}
+
+.wordlists {
+  width: 100%;
+  height: 200px;
+}
+
+.today-answers {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.infos-ruche {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.yesterday-answers {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.update-answers {
+  height: 150px;
+  border: solid;
+  overflow: scroll;
+}
+
+.answers {
+  text-align: center;
+}
+
+#ruche-infos {
+  display: block;
+  width: 225px;
+  height: 150px;
+  border: solid;
+  float: right;
+  overflow: auto;
+}
+
+img {
+  background: transparent;
+  position: absolute;
+  display: none;
+  height: 80px;
+  width: 80px;
+}
+
+img.bg {
+  display: block;
+}
