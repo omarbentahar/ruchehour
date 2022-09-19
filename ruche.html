@@ -41,7 +41,7 @@
       <div id="playfield">
 	      <div id="playfield-bg">
 	        <img id="comb1" class="bg" src="icones/sidecomb.png"><img id="comb2" class="bg" src="icones/sidecomb.png"><img id="comb3" class="bg" src="icones/sidecomb.png"><img id="comb4" class="bg" src="icones/sidecomb.png"><img id="comb5" class="bg" src="icones/sidecomb.png"><img id="comb6" class="bg" src="icones/sidecomb.png"><img id="comb7" class="bg" src="icones/centercomb.png">
-	      </div>
+        </div>
 	      <div id="playfield-fg">
 	       <img id="play1" class="fg" width="60" height="100"><img id="play2" class="fg" width="60" height="100"><img id="play3" class="fg" width="60" height="100"><img id="play4" class="fg" width="60" height="100"><img id="play5" class="fg" width="60" height="100"><img id="play6" class="fg" width="60" height="100"><img id="play7" class="fg" width="60" height="100">
 	      </div>
@@ -65,7 +65,7 @@
 	    <input type="submit" value="Submit">
       </form>
     </div>
-    <hr>
+    <br/><hr>
 
     <!-- Types de réponses du jeu -->
     <div class="messages">
@@ -98,9 +98,7 @@
     <div class="wordlists">
       <div class="today-answers">
 	      <h4 class="answers">Mots trouvés</h4>
-	      <div class="update-answers">
-	        <div id="answers-update"></div>
-	      </div>
+	      <div id="answers-update" class="update-answers"></div>
       </div>
       <div class="infos-ruche">
 	      <h4 class="answers">Infos sur la ruche</h4>
@@ -109,33 +107,30 @@
     </div>
     
     <br />
-    <br />
 
     <hr>
     
     <!-- Boutons pour la ruche de la veille -->
-    <div class="game-buttons">
-      <button onclick="show_yesterday_info()">Ruche de la veille</button>
+    <div id = "bouton-veille" class="game-buttons">
+      <button onclick="toggle_yesterday_info()">Ruche de la veille</button>
     </div>
 
     <br />
 
     <!-- Ruche de la veille -->
 
-    <!-- <div class="wordlists">
+    <div class="wordlists" id = "resultats-veille">
       <div class="yesterday-answers">
         <h4 class="answers">Mots de la veille</h4>
-	      <div class="update-answers">
-          <div id="answers-update"></div>
-	      </div>
+	      <div class="update-answers"></div>
       </div>
-      <div class="infos-ruche">
-        <h4 id="infos-yesterday" class="answers">Ruche d'hier</h4>
+      <div class="yesterday-answers">
+        <h4 class="answers">Ruche d'hier</h4>
 	      <div id="ruche-infos"></div>
       </div>
     </div>
     <br />
-    <br /> -->
+    <br />
 
     <script src="ruche.js"></script>
   </body>

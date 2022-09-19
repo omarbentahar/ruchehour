@@ -69,7 +69,10 @@ h1 {
   font-style: italic;
 }
 
-h2, h3, h4 {
+h2 {
+  text-align: left;
+}
+h3, h4 {
   color: #000000;
 }
 
@@ -95,8 +98,8 @@ pre {
 }
 
 #game {
-  width: 360px;
-  height: 450px;
+  width: 240px;
+  height: 300px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -172,10 +175,13 @@ pre {
   float: left;
 }
 
-.yesterday-answers {
-  width: 50%;
-  height: 100%;
-  float: left;
+#ruche-infos {
+  display: block;
+  width: 225px;
+  height: 150px;
+  border: solid;
+  float: right;
+  overflow: auto;
 }
 
 .update-answers {
@@ -188,23 +194,19 @@ pre {
   text-align: center;
 }
 
-#ruche-infos {
-  display: block;
-  width: 225px;
-  height: 150px;
-  border: solid;
-  float: right;
-  overflow: auto;
-}
-
 img {
   background: transparent;
   position: absolute;
   display: none;
-  height: 80px;
-  width: 80px;
 }
 
 img.bg {
   display: block;
+}
+
+.yesterday-answers {
+  width: 50%;
+  height: 100%;
+  float: left;
+  display: none;
 }
