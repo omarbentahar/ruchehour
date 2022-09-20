@@ -30,11 +30,11 @@
 		  <div class="navbar">
 		    <a href="/ruche.html">Ruche</a> |
 		    <a href="#top">Jeu</a> |
-		    <a href="/rules.html">Règles</a>
+		    <a href="#rules">Règles</a>
 		  </div>
 	    <hr />
 	  </div>
-    <h2 id="play">Play Free Bee on the Web</h2>
+    <h2 id="play">La Ruche du jour</h2>
 
     <!-- Aire de jeu -->
     <div id="game">
@@ -110,27 +110,31 @@
 
     <hr>
     
-    <!-- Boutons pour la ruche de la veille -->
+    <!-- Bouton pour la ruche de la veille -->
     <div id = "bouton-veille" class="game-buttons">
-      <button onclick="toggle_yesterday_info()">Ruche de la veille</button>
+      <button onclick="toggle_yesterday_info()">Ruche de la veille On/Off</button>
     </div>
 
     <br />
 
     <!-- Ruche de la veille -->
-
-    <div class="wordlists" id = "resultats-veille">
-      <div class="yesterday-answers">
-        <h4 class="answers">Mots de la veille</h4>
-	      <div class="update-answers"></div>
+    <div class = "hidden_block" id = "resultats-veille">
+      <div class="wordlists">
+        <div class="yesterday-answers">
+          <h4 class="answers">Mots de la veille</h4>
+          <div class="update-answers"></div>
+        </div>
+        <div class="yesterday-answers">
+          <h4 class="answers">Ruche d'hier</h4>
+          <div id="ruche-infos"></div>
+        </div>
       </div>
-      <div class="yesterday-answers">
-        <h4 class="answers">Ruche d'hier</h4>
-	      <div id="ruche-infos"></div>
-      </div>
+      <br /><br />
     </div>
-    <br />
-    <br />
+
+    <hr>
+    <a name="rules"></a>
+    <h2 id="play">Règles du jeu</h2>
 
     <script src="ruche.js"></script>
   </body>

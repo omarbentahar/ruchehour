@@ -84,11 +84,6 @@ a, .subtitle {
   color: #000000;
 }
 
-pre {
-  padding: .5em;
-  overflow: auto;
-}
-
 .navbar {
   text-align: center;
 }
@@ -208,5 +203,8 @@ img.bg {
   width: 50%;
   height: 100%;
   float: left;
+}
+
+.hidden_block {
   display: none;
 }
