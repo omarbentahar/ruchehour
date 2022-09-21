@@ -23,27 +23,27 @@
     </div>
 
     <!-- Haut de page -->
-    <a name="top"></a>
 	  <div id="main">
-	    <p class="subtitle">Enhanced Free Software clone of The New York Times game Spelling Bee</p>
+      <p class="subtitle">Enhanced Free Software clone of The New York Times game Spelling Bee</p>
 	    <hr />
 		  <div class="navbar">
-		    <a href="/ruche.html">Ruche</a> |
+        <a href="/ruche.html">Ruche</a> |
 		    <a href="#top">Jeu</a> |
 		    <a href="#rules">Règles</a>
 		  </div>
 	    <hr />
 	  </div>
-    <h2 id="play">La Ruche du jour</h2>
-
+    
     <!-- Aire de jeu -->
+    <a name="top"></a>
+    <h2 id="play">La Ruche du jour</h2>
     <div id="game">
       <div id="playfield">
 	      <div id="playfield-bg">
 	        <img id="comb1" class="bg" src="icones/sidecomb.png"><img id="comb2" class="bg" src="icones/sidecomb.png"><img id="comb3" class="bg" src="icones/sidecomb.png"><img id="comb4" class="bg" src="icones/sidecomb.png"><img id="comb5" class="bg" src="icones/sidecomb.png"><img id="comb6" class="bg" src="icones/sidecomb.png"><img id="comb7" class="bg" src="icones/centercomb.png">
         </div>
 	      <div id="playfield-fg">
-	       <img id="play1" class="fg" width="60" height="100"><img id="play2" class="fg" width="60" height="100"><img id="play3" class="fg" width="60" height="100"><img id="play4" class="fg" width="60" height="100"><img id="play5" class="fg" width="60" height="100"><img id="play6" class="fg" width="60" height="100"><img id="play7" class="fg" width="60" height="100">
+	       <img id="play1" class="fg" width="90" height="150"><img id="play2" class="fg" width="90" height="150"><img id="play3" class="fg" width="90" height="150"><img id="play4" class="fg" width="90" height="150"><img id="play5" class="fg" width="90" height="150"><img id="play6" class="fg" width="90" height="150"><img id="play7" class="fg" width="90" height="150">
 	      </div>
       </div>
     </div>
@@ -85,7 +85,7 @@
       </div>
       <div class="mots">
         <h4>Mots trouvés</h4>
-        <span id="count-update">0/?</span>
+        <span id="count-update">0/0</span>
       </div>
       <div class="rank">
 	      <h4>Rang</h4>
@@ -118,7 +118,7 @@
     <br />
 
     <!-- Ruche de la veille -->
-    <div class = "hidden_block" id = "resultats-veille">
+    <div id = "resultats-veille" style="display: none;">
       <div class="wordlists">
         <div class="yesterday-answers">
           <h4 class="answers">Mots de la veille</h4>

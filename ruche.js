@@ -1,7 +1,7 @@
 const myHeading = document.querySelector('h1');
 myHeading.textContent = 'Ruche Hour!';
 
-
+// Generation des colonnes laterales
 var gauche = document.getElementById('imagesgauche');
 var droite = document.getElementById('imagesdroite');
 
@@ -19,249 +19,258 @@ for (var i = 0; i < 8; i++) {
     droite.innerHTML += blockimages(true);
 }
 
-
-// var day;
-// // const letters = [a, b, c, d, e, f, g];
-// var letters = [], todayletters = [];
-// var found; foundlist = [];
-// var current_score, words_found, pangrams_found;
-// var current_guess;
-// var max_score_today, max_words_today, pangrams_today;
-// var max_score_yesterday, max_words_yesterday, pangrams_yesterday;
-// var rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9;
+// Mise en place du jeu.
+var day;
+var letters = ["a", "b", "c", "d", "e", "f", "g"], todayletters = ["a", "b", "c", "d", "e", "f", "g"];
+var found; foundlist = [];
+var current_score, words_found, pangrams_found;
+var current_guess;
+var max_score_today, max_words_today, pangrams_today;
+var max_score_yesterday, max_words_yesterday, pangrams_yesterday;
+var rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9;
 // var current_wordlist = [], todaywords = []; yesterdaywords;
 
 
-// function type(letter, combno) {
-// 	document.getElementById("no-message").style.display = "inline";
-// 	document.getElementById("pangram").style.display = "none";
-// 	document.getElementById("already-found").style.display = "none";
-// 	document.getElementById("center-letter").style.display = "none";
-// 	document.getElementById("too-short").style.display = "none";
-// 	document.getElementById("not-in-list").style.display = "none";
-// 	document.getElementById("comb" + combno).style.height = "80px";
-// 	document.getElementById("comb" + combno).style.width = "80px";
-// 	document.getElementById("comb" + combno).style.left = parseInt(document.getElementById("comb" + combno).style.left) + 10 + "px";
-// 	document.getElementById("comb" + combno).style.top = parseInt(document.getElementById("comb" + combno).style.top) + 10 + "px";
-// 	document.getElementById("guess").value = document.getElementById("guess").value + letter;
-// }
-
-// function untype() {
-// 	document.getElementById("comb1").style.height = "160px";
-// 	document.getElementById("comb1").style.width = "160px";
-// 	document.getElementById("comb1").style.left = "1px";
-// 	document.getElementById("comb1").style.top = "61px";
-// 	document.getElementById("comb2").style.height = "160px";
-// 	document.getElementById("comb2").style.width = "160px";
-// 	document.getElementById("comb2").style.left = "105px";
-// 	document.getElementById("comb2").style.top = "2px";
-// 	document.getElementById("comb3").style.height = "160px";
-// 	document.getElementById("comb3").style.width = "160px";
-// 	document.getElementById("comb3").style.left = "209px";
-// 	document.getElementById("comb3").style.top = "61px";
-// 	document.getElementById("comb4").style.height = "160px";
-// 	document.getElementById("comb4").style.width = "160px";
-// 	document.getElementById("comb4").style.left = "1px";
-// 	document.getElementById("comb4").style.top = "181px";
-// 	document.getElementById("comb5").style.height = "160px";
-// 	document.getElementById("comb5").style.width = "160px";
-// 	document.getElementById("comb5").style.left = "105px";
-// 	document.getElementById("comb5").style.top = "240px";
-// 	document.getElementById("comb6").style.height = "160px";
-// 	document.getElementById("comb6").style.width = "160px";
-// 	document.getElementById("comb6").style.left = "209px";
-// 	document.getElementById("comb6").style.top = "181px";
-// 	document.getElementById("comb7").style.height = "160px";
-// 	document.getElementById("comb7").style.width = "160px";
-// 	document.getElementById("comb7").style.left = "105px";
-// 	document.getElementById("comb7").style.top = "121px";
-// }
+// Ajout d'une lettre au mot en cours - l'alvéole se contracte au clic.
+function type(letter, combno) {
+	document.getElementById("no-message").style.display = "inline";
+	document.getElementById("pangram").style.display = "none";
+	document.getElementById("already-found").style.display = "none";
+	document.getElementById("center-letter").style.display = "none";
+	document.getElementById("too-short").style.display = "none";
+	document.getElementById("not-in-list").style.display = "none";
+	document.getElementById("comb" + combno).style.height = "120px";
+	document.getElementById("comb" + combno).style.width = "120px";
+	document.getElementById("comb" + combno).style.left = parseInt(document.getElementById("comb" + combno).style.left) + 20 + "px";
+	document.getElementById("comb" + combno).style.top = parseInt(document.getElementById("comb" + combno).style.top) + 20 + "px";
+	document.getElementById("guess").value = document.getElementById("guess").value + letter;
+}
 
 
-// function display() {
-// 	var didtouch = 0;
-
-// 	document.getElementById("play1").src = "lettres/"+ letters[0] + ".png";
-// 	document.getElementById("play1").alt = letters[0];
-// 	document.getElementById("play1").style.left = "21px";
-// 	document.getElementById("play1").style.top = "51px";
-// 	document.getElementById("play1").ontouchstart = function() {didtouch = 1; type(letters[0], 1)};
-// 	document.getElementById("play1").onmousedown = function() {if (didtouch != 1) {type(letters[0], 1)}};
-// 	document.getElementById("play1").style.display = "block";
-// 	document.getElementById("play1").onmouseup = function() {untype()};
-// 	document.getElementById("play1").ondragend = function() {untype()};
-// 	document.getElementById("play1").ontouchend = function() {untype()};
-// 	document.getElementById("play1").ontouchcancel = function() {untype()};
-
-// 	document.getElementById("play2").src = "lettres/"+ letters[1] + ".png";
-// 	document.getElementById("play2").alt = letters[1];
-// 	document.getElementById("play2").style.left = "100px";
-// 	document.getElementById("play2").style.top = "1px";
-// 	document.getElementById("play2").ontouchstart = function() {didtouch = 1; type(letters[1], 2)};
-// 	document.getElementById("play2").onmousedown = function() {if (didtouch != 1) {type(letters[1], 2)}};
-// 	document.getElementById("play2").style.display = "block";
-// 	document.getElementById("play2").onmouseup = function() {untype()};
-// 	document.getElementById("play2").ondragend = function() {untype()};
-// 	document.getElementById("play2").ontouchend = function() {untype()};
-// 	document.getElementById("play2").ontouchcancel = function() {untype()};
-
-// 	document.getElementById("play3").src = "lettres/"+ letters[2] + ".png";
-// 	document.getElementById("play3").alt = letters[2];
-// 	document.getElementById("play3").style.left = "179px";
-// 	document.getElementById("play3").style.top = "51px";
-// 	document.getElementById("play3").ontouchstart = function() {didtouch = 1; type(letters[2], 3)};
-// 	document.getElementById("play3").onmousedown = function() {if (didtouch != 1) {type(letters[2], 3)}};
-// 	document.getElementById("play3").style.display = "block";
-// 	document.getElementById("play3").onmouseup = function() {untype()};
-// 	document.getElementById("play3").ondragend = function() {untype()};
-// 	document.getElementById("play3").ontouchend = function() {untype()};
-// 	document.getElementById("play3").ontouchcancel = function() {untype()};
-
-// 	document.getElementById("play4").src = "lettres/"+ letters[3] + ".png";
-// 	document.getElementById("play4").alt = letters[3];
-// 	document.getElementById("play4").style.left = "21px";
-// 	document.getElementById("play4").style.top = "149px";
-// 	document.getElementById("play4").ontouchstart = function() {didtouch = 1; type(letters[3], 4)};
-// 	document.getElementById("play4").onmousedown = function() {if (didtouch != 1) {type(letters[3], 4)}};
-// 	document.getElementById("play4").style.display = "block";
-// 	document.getElementById("play4").onmouseup = function() {untype()};
-// 	document.getElementById("play4").ondragend = function() {untype()};
-// 	document.getElementById("play4").ontouchend = function() {untype()};
-// 	document.getElementById("play4").ontouchcancel = function() {untype()};
-
-// 	document.getElementById("play5").src = "lettres/"+ letters[4] + ".png";
-// 	document.getElementById("play5").alt = letters[4];
-// 	document.getElementById("play5").style.left = "100px";
-// 	document.getElementById("play5").style.top = "199px";
-// 	document.getElementById("play5").ontouchstart = function() {didtouch = 1; type(letters[4], 5)};
-// 	document.getElementById("play5").onmousedown = function() {if (didtouch != 1) {type(letters[4], 5)}};
-// 	document.getElementById("play5").style.display = "block";
-// 	document.getElementById("play5").onmouseup = function() {untype()};
-// 	document.getElementById("play5").ondragend = function() {untype()};
-// 	document.getElementById("play5").ontouchend = function() {untype()};
-// 	document.getElementById("play5").ontouchcancel = function() {untype()};
-
-// 	document.getElementById("play6").src = "lettres/"+ letters[5] + ".png";
-// 	document.getElementById("play6").alt = letters[5];
-// 	document.getElementById("play6").style.left = "179px";
-// 	document.getElementById("play6").style.top = "149px";
-// 	document.getElementById("play6").ontouchstart = function() {didtouch = 1; type(letters[5], 6)};
-// 	document.getElementById("play6").onmousedown = function() {if (didtouch != 1) {type(letters[5], 6)}};
-// 	document.getElementById("play6").style.display = "block";
-// 	document.getElementById("play6").onmouseup = function() {untype()};
-// 	document.getElementById("play6").ondragend = function() {untype()};
-// 	document.getElementById("play6").ontouchend = function() {untype()};
-// 	document.getElementById("play6").ontouchcancel = function() {untype()};
-
-// 	document.getElementById("play7").src = "lettres/"+ letters[6] + ".png";
-// 	document.getElementById("play7").alt = "center: " + letters[6][1];
-// 	document.getElementById("play7").style.left = "100px";
-// 	document.getElementById("play7").style.top = "100px";
-// 	document.getElementById("play7").ontouchstart = function() {didtouch = 1; type(letters[6][1], 7)};
-// 	document.getElementById("play7").onmousedown = function() {if (didtouch != 1) {type(letters[6][1], 7)}};
-// 	document.getElementById("play7").style.display = "block";
-// 	document.getElementById("play7").onmouseup = function() {untype()};
-// 	document.getElementById("play7").ondragend = function() {untype()};
-// 	document.getElementById("play7").ontouchend = function() {untype()};
-// 	document.getElementById("play7").ontouchcancel = function() {untype()};
-// }
+// Reset des alvéoles après un click.
+function untype() {
+	document.getElementById("comb1").style.height = "160px";
+	document.getElementById("comb1").style.width = "160px";
+	document.getElementById("comb1").style.left = "1px";
+	document.getElementById("comb1").style.top = "61px";
+	document.getElementById("comb2").style.height = "160px";
+	document.getElementById("comb2").style.width = "160px";
+	document.getElementById("comb2").style.left = "105px";
+	document.getElementById("comb2").style.top = "2px";
+	document.getElementById("comb3").style.height = "160px";
+	document.getElementById("comb3").style.width = "160px";
+	document.getElementById("comb3").style.left = "209px";
+	document.getElementById("comb3").style.top = "61px";
+	document.getElementById("comb4").style.height = "160px";
+	document.getElementById("comb4").style.width = "160px";
+	document.getElementById("comb4").style.left = "1px";
+	document.getElementById("comb4").style.top = "181px";
+	document.getElementById("comb5").style.height = "160px";
+	document.getElementById("comb5").style.width = "160px";
+	document.getElementById("comb5").style.left = "105px";
+	document.getElementById("comb5").style.top = "240px";
+	document.getElementById("comb6").style.height = "160px";
+	document.getElementById("comb6").style.width = "160px";
+	document.getElementById("comb6").style.left = "209px";
+	document.getElementById("comb6").style.top = "181px";
+	document.getElementById("comb7").style.height = "160px";
+	document.getElementById("comb7").style.width = "160px";
+	document.getElementById("comb7").style.left = "105px";
+	document.getElementById("comb7").style.top = "121px";
+}
 
 
-// function update_rank() {
-// 	var rank;
+// Affichage des différentes lettres
+function display() {
+	var didtouch = 0;
 
-// 	if (current_score >= rank9) {
-// 	  rank = "Queen Bee!";
-// 	} else if (current_score >= rank8) {
-// 	  rank = "Outstanding";
-// 	} else if (current_score >= rank7) {
-// 	  rank = "Marvellous";
-// 	} else if (current_score >= rank6) {
-// 	  rank = "Superb";
-// 	} else if (current_score >= rank5) {
-// 	  rank = "Excellent";
-// 	} else if (current_score >= rank4) {
-// 	  rank = "Skilled";
-// 	} else if (current_score >= rank3) {
-// 	  rank = "Fine";
-// 	} else if (current_score >= rank2) {
-// 	  rank = "Novice";
-// 	} else {
-// 	  rank = "Newbie";
-// 	}
+	document.getElementById("play1").src = "lettres/"+ letters[0] + ".png";
+	document.getElementById("play1").alt = letters[0];
+	document.getElementById("play1").style.left = "36px";
+	document.getElementById("play1").style.top = "66px";
+	document.getElementById("play1").ontouchstart = function() {didtouch = 1; type(letters[0], 1)};
+	document.getElementById("play1").onmousedown = function() {if (didtouch != 1) {type(letters[0], 1)}};
+	document.getElementById("play1").style.display = "block";
+	document.getElementById("play1").onmouseup = function() {untype()};
+	document.getElementById("play1").ondragend = function() {untype()};
+	document.getElementById("play1").ontouchend = function() {untype()};
+	document.getElementById("play1").ontouchcancel = function() {untype()};
 
-// 	document.getElementById("rank-update").innerHTML = rank;
-// }
+	document.getElementById("play2").src = "lettres/"+ letters[1] + ".png";
+	document.getElementById("play2").alt = letters[1];
+	document.getElementById("play2").style.left = "141px";
+	document.getElementById("play2").style.top = "7px";
+	document.getElementById("play2").ontouchstart = function() {didtouch = 1; type(letters[1], 2)};
+	document.getElementById("play2").onmousedown = function() {if (didtouch != 1) {type(letters[1], 2)}};
+	document.getElementById("play2").style.display = "block";
+	document.getElementById("play2").onmouseup = function() {untype()};
+	document.getElementById("play2").ondragend = function() {untype()};
+	document.getElementById("play2").ontouchend = function() {untype()};
+	document.getElementById("play2").ontouchcancel = function() {untype()};
 
-// function set_rank() {
-// 	rank1 = 0;
-// 	rank2 = Math.floor(max_score_today * 0.02);
-// 	rank3 = Math.floor(max_score_today * 0.05);
-// 	rank4 = Math.floor(max_score_today * 0.08);
-// 	rank5 = Math.floor(max_score_today * 0.15);
-// 	rank6 = Math.floor(max_score_today * 0.25);
-// 	rank7 = Math.floor(max_score_today * 0.40);
-// 	rank8 = Math.floor(max_score_today * 0.50);
-// 	rank9 = Math.floor(max_score_today * 0.70);
-// }
+	document.getElementById("play3").src = "lettres/"+ letters[2] + ".png";
+	document.getElementById("play3").alt = letters[2];
+	document.getElementById("play3").style.left = "246px";
+	document.getElementById("play3").style.top = "66px";
+	document.getElementById("play3").ontouchstart = function() {didtouch = 1; type(letters[2], 3)};
+	document.getElementById("play3").onmousedown = function() {if (didtouch != 1) {type(letters[2], 3)}};
+	document.getElementById("play3").style.display = "block";
+	document.getElementById("play3").onmouseup = function() {untype()};
+	document.getElementById("play3").ondragend = function() {untype()};
+	document.getElementById("play3").ontouchend = function() {untype()};
+	document.getElementById("play3").ontouchcancel = function() {untype()};
 
-// function save_word() {
-// 	localStorage.setItem("foundwords", JSON.stringify(foundlist));
-// }
+	document.getElementById("play4").src = "lettres/"+ letters[3] + ".png";
+	document.getElementById("play4").alt = letters[3];
+	document.getElementById("play4").style.left = "36px";
+	document.getElementById("play4").style.top = "186px";
+	document.getElementById("play4").ontouchstart = function() {didtouch = 1; type(letters[3], 4)};
+	document.getElementById("play4").onmousedown = function() {if (didtouch != 1) {type(letters[3], 4)}};
+	document.getElementById("play4").style.display = "block";
+	document.getElementById("play4").onmouseup = function() {untype()};
+	document.getElementById("play4").ondragend = function() {untype()};
+	document.getElementById("play4").ontouchend = function() {untype()};
+	document.getElementById("play4").ontouchcancel = function() {untype()};
 
-// function add_points() {
-// 	var one = 0, two = 0, three = 0, four = 0, five = 0, six = 0;
-// 	var i = 0, j = 0;
+	document.getElementById("play5").src = "lettres/"+ letters[4] + ".png";
+	document.getElementById("play5").alt = letters[4];
+	document.getElementById("play5").style.left = "141px";
+	document.getElementById("play5").style.top = "245px";
+	document.getElementById("play5").ontouchstart = function() {didtouch = 1; type(letters[4], 5)};
+	document.getElementById("play5").onmousedown = function() {if (didtouch != 1) {type(letters[4], 5)}};
+	document.getElementById("play5").style.display = "block";
+	document.getElementById("play5").onmouseup = function() {untype()};
+	document.getElementById("play5").ondragend = function() {untype()};
+	document.getElementById("play5").ontouchend = function() {untype()};
+	document.getElementById("play5").ontouchcancel = function() {untype()};
 
-// 	if (daily_play === 1) {
-// 	  save_word();
-// 	}
+	document.getElementById("play6").src = "lettres/"+ letters[5] + ".png";
+	document.getElementById("play6").alt = letters[5];
+	document.getElementById("play6").style.left = "246px";
+	document.getElementById("play6").style.top = "186px";
+	document.getElementById("play6").ontouchstart = function() {didtouch = 1; type(letters[5], 6)};
+	document.getElementById("play6").onmousedown = function() {if (didtouch != 1) {type(letters[5], 6)}};
+	document.getElementById("play6").style.display = "block";
+	document.getElementById("play6").onmouseup = function() {untype()};
+	document.getElementById("play6").ondragend = function() {untype()};
+	document.getElementById("play6").ontouchend = function() {untype()};
+	document.getElementById("play6").ontouchcancel = function() {untype()};
 
-// 	i = guess.length;
-// 	if (i < 7) {
-// 	  if (i == 4) {
-// 	    i = 1;
-// 	  }
-// 	  points += i;
+	document.getElementById("play7").src = "lettres/"+ letters[6] + ".png";
+	document.getElementById("play7").alt = "center: " + letters[6]// letters[6][1];
+	document.getElementById("play7").style.left = "141px";
+	document.getElementById("play7").style.top = "126px";
+	document.getElementById("play7").ontouchstart = function() {didtouch = 1; type(letters[6], 7)};// type(letters[6][1], 7)};
+	document.getElementById("play7").onmousedown = function() {if (didtouch != 1) {type(letters[6], 7)}};//{type(letters[6][1], 7)}};
+	document.getElementById("play7").style.display = "block";
+	document.getElementById("play7").onmouseup = function() {untype()};
+	document.getElementById("play7").ondragend = function() {untype()};
+	document.getElementById("play7").ontouchend = function() {untype()};
+	document.getElementById("play7").ontouchcancel = function() {untype()};
+}
 
-// 	  return;
-// 	}
 
-// 	i = 0;
-// 	while (i < guess.length) {
-// 	  for (j = 0; j < 7; j++) {
-// 	    if (guess[i] == letters[j]) {
-// 	        if (j == 0) {
-// 		        one = 1;
-// 	        }
-// 	        if (j == 1) {
-// 		        two = 1;
-// 	        }
-// 	        if (j == 2) {
-// 		        three = 1;
-// 	        }
-// 	        if (j == 3) {
-// 		        four = 1;
-// 	        }
-// 	        if (j == 4) {
-// 		        five = 1;
-//             }
-// 	        if (j == 5) {
-// 		        six = 1;
-// 	        }
-// 	    }
-// 	  }
-// 	  i += 1;
-// 	}
+// Rang (Message) - Valeur et update
+function update_rank() {
+	var rank;
 
-// 	if (one == 1 && two == 1 && three == 1 && four == 1 && five == 1 && six == 1) {
-//         points = points + guess.length + 7;
-//         document.getElementById("no-message").style.display = "none";
-//         document.getElementById("pangram").style.display = "inline";
-//         return;
-// 	}
-// 	points = points + guess.length;
-// }
+	if (current_score >= rank9) {
+	  rank = "Maya l'abeille!";
+	} else if (current_score >= rank8) {
+		rank = "Quand le chat lève la queue, c'est qu'il est en confiance";
+	} else if (current_score >= rank7) {
+		rank = "Gratin Cairote";
+	} else if (current_score >= rank6) {
+		rank = "Habile, Bill";
+	} else if (current_score >= rank5) {
+		rank = "J'aime ce qu'il se passe";
+	} else if (current_score >= rank4) {
+		rank = "S'agirait de grandir";
+	} else if (current_score >= rank3) {
+		rank = "T'es mauvais";
+	} else if (current_score >= rank2) {
+		rank = "C'est la piquette, Jack";
+	} else {
+		rank = "Tu sais pas jouer, Jack";
+	}
+
+	document.getElementById("rank-update").innerHTML = rank;
+}
+
+
+function set_rank() {
+	rank1 = 0;
+	rank2 = Math.floor(max_score_today * 0.02);
+	rank3 = Math.floor(max_score_today * 0.05);
+	rank4 = Math.floor(max_score_today * 0.08);
+	rank5 = Math.floor(max_score_today * 0.15);
+	rank6 = Math.floor(max_score_today * 0.25);
+	rank7 = Math.floor(max_score_today * 0.40);
+	rank8 = Math.floor(max_score_today * 0.50);
+	rank9 = Math.floor(max_score_today * 0.70);
+}
+
+
+// Sauvegarde d'un mot trouvé (local storage).
+function save_word() {
+	localStorage.setItem("foundwords", JSON.stringify(foundlist));
+}
+
+
+// Calcul des points.
+function add_points() {
+	var one = 0, two = 0, three = 0, four = 0, five = 0, six = 0;
+	var i = 0, j = 0;
+
+	if (daily_play === 1) {
+	  save_word();
+	}
+
+	i = guess.length;
+	if (i < 7) {
+	  if (i == 4) {
+	    i = 1;
+	  }
+	  points += i;
+
+	  return;
+	}
+
+	i = 0;
+	while (i < guess.length) {
+	  for (j = 0; j < 7; j++) {
+	    if (guess[i] == letters[j]) {
+	        if (j == 0) {
+		        one = 1;
+	        }
+	        if (j == 1) {
+		        two = 1;
+	        }
+	        if (j == 2) {
+		        three = 1;
+	        }
+	        if (j == 3) {
+		        four = 1;
+	        }
+	        if (j == 4) {
+		        five = 1;
+            }
+	        if (j == 5) {
+		        six = 1;
+	        }
+	    }
+	  }
+	  i += 1;
+	}
+
+	if (one == 1 && two == 1 && three == 1 && four == 1 && five == 1 && six == 1) {
+        points = points + guess.length + 7;
+        document.getElementById("no-message").style.display = "none";
+        document.getElementById("pangram").style.display = "inline";
+        return;
+	}
+	points = points + guess.length;
+}
 
 // function found_word() {
 // 	var i;
@@ -514,31 +523,31 @@ window.onload = function() {
 	get_today();
 };
 
-// function shuffle() {
-// 	var i, j, t;
-// 	for (i = 5; i > 0; i--) {
-// 	  j = Math.floor(Math.random() * (i + 1));
-// 	  t = letters[j];
-// 	  letters[j] = letters[i];
-// 	  letters[i] = t;
-// 	}
+function shuffle() {
+	var i, j, t;
+	for (i = 5; i > 0; i--) {
+	  j = Math.floor(Math.random() * (i + 1));
+	  t = letters[j];
+	  letters[j] = letters[i];
+	  letters[i] = t;
+	}
 
-// 	display();
-// }
+	display();
+}
 
 
 
-// function delete_letter() {
-// 	var str = document.getElementById("guess").value;
-// 	var len = str.length;
+function delete_letter() {
+	var str = document.getElementById("guess").value;
+	var len = str.length;
 
-// 	str = str.slice(0, len - 1) + str.slice(len, len);
-// 	document.getElementById("guess").value = str;
-// }
+	str = str.slice(0, len - 1) + str.slice(len, len);
+	document.getElementById("guess").value = str;
+}
 
 function toggle_yesterday_info() {
 	var resultats = document.getElementById("resultats-veille");
-    if (resultats.style.display === "none") {
+    if (resultats.style.display == "none") {
         resultats.style.display = "block";
     } else {
         resultats.style.display = "none";
