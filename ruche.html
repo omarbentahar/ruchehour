@@ -74,7 +74,7 @@
       <span id="already-found" class="message">Mot déjà trouvé</span>
       <span id="center-letter" class="message">Le mot doit contenir la lettre centrale</span>
       <span id="too-short" class="message">Trop court!</span>
-      <span id="not-in-list" class="message">Ce mot n'existe pas dans notre dictionnaire</span>
+      <span id="not-in-list" class="message">Ce mot n'est pas dans notre dictionnaire</span>
     </div>
 
     <!-- Score -->
@@ -85,7 +85,7 @@
       </div>
       <div class="mots">
         <h4>Mots trouvés</h4>
-        <span id="count-update">0/0</span>
+        <span id="word-update">0/0</span>
       </div>
       <div class="rank">
 	      <h4>Rang</h4>
@@ -96,7 +96,7 @@
 
     <!-- Ruche du jour -->
     <div class="wordlists">
-      <div class="today-answers">
+      <div class="word-answers">
 	      <h4 class="answers">Mots trouvés</h4>
 	      <div id="answers-update" class="update-answers"></div>
       </div>
@@ -118,19 +118,17 @@
     <br />
 
     <!-- Ruche de la veille -->
-    <div id = "resultats-veille" style="display: none;">
-      <div class="wordlists">
-        <div class="yesterday-answers">
+    <div class="wordlists" id = "resultats-veille" style="display: none;">
+        <div class="word-answers">
           <h4 class="answers">Mots de la veille</h4>
-          <div class="update-answers"></div>
+          <div id="answers-yesterday" class="update-answers"></div>
         </div>
-        <div class="yesterday-answers">
+        <div class="infos-ruche">
           <h4 class="answers">Ruche d'hier</h4>
-          <div id="ruche-infos"></div>
+          <div id="ruche-infos-veille"></div>
         </div>
-      </div>
-      <br /><br />
     </div>
+    <br /><br />
 
     <hr>
     <a name="rules"></a>

@@ -158,7 +158,7 @@ a, .subtitle {
   height: 200px;
 }
 
-.today-answers {
+.word-answers {
   width: 50%;
   height: 100%;
   float: left;
@@ -168,9 +168,19 @@ a, .subtitle {
   width: 50%;
   height: 100%;
   float: left;
+  text-align: left;
 }
 
 #ruche-infos {
+  display: block;
+  width: 225px;
+  height: 150px;
+  border: solid;
+  float: right;
+  overflow: auto;
+}
+
+#ruche-infos-veille {
   display: block;
   width: 225px;
   height: 150px;
@@ -183,6 +193,7 @@ a, .subtitle {
   height: 150px;
   border: solid;
   overflow: scroll;
+  text-align: left;
 }
 
 .answers {
@@ -197,10 +208,4 @@ img {
 
 img.bg {
   display: block;
-}
-
-.yesterday-answers {
-  width: 50%;
-  height: 100%;
-  float: left;
 }

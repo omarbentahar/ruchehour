@@ -20,25 +20,25 @@ for (var i = 0; i < 8; i++) {
 }
 
 // Mise en place du jeu.
-var day;
-var letters = ["a", "b", "c", "d", "e", "f", "g"], todayletters = ["a", "b", "c", "d", "e", "f", "g"];
-var found; foundlist = [];
-var current_score, words_found, pangrams_found;
-var current_guess;
-var max_score_today, max_words_today, pangrams_today;
-var max_score_yesterday, max_words_yesterday, pangrams_yesterday;
+var day, foundall;
+var daily_play;
+var letters = ["c", "t", "a", "o", "n", "s", "i"], todayletters = ["c", "t", "a", "o", "n", "s", "i"];
+var found, foundlist = [];
+var pangram_found, pangram_list = [];
+var current_score;
+var guess;
+var load_words;
+var pangrams_yesterday = 3, pangramlist_yesterday = ["actions", "cations", "contais"];
 var rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9;
-// var current_wordlist = [], todaywords = []; yesterdaywords;
+var max_score = 55, max_score_today = 55, max_score_yesterday = 55;
+var n_words = 7, wordlist = ["actions", "action", "ions", "coin", "coins", "cations", "contais"];
+var n_wordstoday = 7, todaywordlist = ["actions", "action", "ions", "coin", "coins", "cations", "contais"];
+var n_wordsyesterday = 7, yesterdaywordlist = ["actions", "action", "ions", "coin", "coins", "cations", "contais"];
 
 
 // Ajout d'une lettre au mot en cours - l'alvéole se contracte au clic.
 function type(letter, combno) {
-	document.getElementById("no-message").style.display = "inline";
-	document.getElementById("pangram").style.display = "none";
-	document.getElementById("already-found").style.display = "none";
-	document.getElementById("center-letter").style.display = "none";
-	document.getElementById("too-short").style.display = "none";
-	document.getElementById("not-in-list").style.display = "none";
+	reinitialize_message();
 	document.getElementById("comb" + combno).style.height = "120px";
 	document.getElementById("comb" + combno).style.width = "120px";
 	document.getElementById("comb" + combno).style.left = parseInt(document.getElementById("comb" + combno).style.left) + 20 + "px";
@@ -78,7 +78,6 @@ function untype() {
 	document.getElementById("comb7").style.left = "105px";
 	document.getElementById("comb7").style.top = "121px";
 }
-
 
 // Affichage des différentes lettres
 function display() {
@@ -157,11 +156,11 @@ function display() {
 	document.getElementById("play6").ontouchcancel = function() {untype()};
 
 	document.getElementById("play7").src = "lettres/"+ letters[6] + ".png";
-	document.getElementById("play7").alt = "center: " + letters[6]// letters[6][1];
+	document.getElementById("play7").alt = "center: " + letters[6];
 	document.getElementById("play7").style.left = "141px";
 	document.getElementById("play7").style.top = "126px";
-	document.getElementById("play7").ontouchstart = function() {didtouch = 1; type(letters[6], 7)};// type(letters[6][1], 7)};
-	document.getElementById("play7").onmousedown = function() {if (didtouch != 1) {type(letters[6], 7)}};//{type(letters[6][1], 7)}};
+	document.getElementById("play7").ontouchstart = function() {didtouch = 1; type(letters[6], 7)};
+	document.getElementById("play7").onmousedown = function() {if (didtouch != 1) {type(letters[6], 7)}};
 	document.getElementById("play7").style.display = "block";
 	document.getElementById("play7").onmouseup = function() {untype()};
 	document.getElementById("play7").ondragend = function() {untype()};
@@ -169,13 +168,12 @@ function display() {
 	document.getElementById("play7").ontouchcancel = function() {untype()};
 }
 
-
 // Rang (Message) - Valeur et update
 function update_rank() {
 	var rank;
 
 	if (current_score >= rank9) {
-	  rank = "Maya l'abeille!";
+		rank = "Félicitations, tu es notre Raïs à nous!";
 	} else if (current_score >= rank8) {
 		rank = "Quand le chat lève la queue, c'est qu'il est en confiance";
 	} else if (current_score >= rank7) {
@@ -197,7 +195,6 @@ function update_rank() {
 	document.getElementById("rank-update").innerHTML = rank;
 }
 
-
 function set_rank() {
 	rank1 = 0;
 	rank2 = Math.floor(max_score_today * 0.02);
@@ -210,315 +207,241 @@ function set_rank() {
 	rank9 = Math.floor(max_score_today * 0.70);
 }
 
-
 // Sauvegarde d'un mot trouvé (local storage).
 function save_word() {
 	localStorage.setItem("foundwords", JSON.stringify(foundlist));
 }
 
-
 // Calcul des points.
-function add_points() {
-	var one = 0, two = 0, three = 0, four = 0, five = 0, six = 0;
+function add_points_check_pangram() {
+	var used_letters = [0, 0, 0, 0, 0, 0];
 	var i = 0, j = 0;
 
-	if (daily_play === 1) {
-	  save_word();
+	if (daily_play) {
+		save_word();
 	}
 
-	i = guess.length;
-	if (i < 7) {
-	  if (i == 4) {
-	    i = 1;
-	  }
-	  points += i;
-
-	  return;
+	// Ajout des points
+	if (guess.length == 4) {
+		current_score += 1;
+		return false;
 	}
+	current_score += guess.length;
 
-	i = 0;
+	// Verification pangramme pour 7 points bonus
 	while (i < guess.length) {
-	  for (j = 0; j < 7; j++) {
-	    if (guess[i] == letters[j]) {
-	        if (j == 0) {
-		        one = 1;
-	        }
-	        if (j == 1) {
-		        two = 1;
-	        }
-	        if (j == 2) {
-		        three = 1;
-	        }
-	        if (j == 3) {
-		        four = 1;
-	        }
-	        if (j == 4) {
-		        five = 1;
-            }
-	        if (j == 5) {
-		        six = 1;
-	        }
+		// On ne vérifie pas le centre - Toujours utilisé.
+		for (j = 0; j < 6; j++) {
+			if (guess[i] == letters[j]) {
+				if (used_letters[j] == 0) {
+					used_letters[j] = 1;
+				}
+			}
 	    }
-	  }
-	  i += 1;
+		i += 1;
+	}
+	// Verification lettre centrale.
+	var all_used = true;
+	for (j = 0; j < 6; j++) {
+		all_used = all_used && used_letters[j] == 1;
 	}
 
-	if (one == 1 && two == 1 && three == 1 && four == 1 && five == 1 && six == 1) {
-        points = points + guess.length + 7;
+	if (all_used) {
+        current_score += 7;
         document.getElementById("no-message").style.display = "none";
         document.getElementById("pangram").style.display = "inline";
-        return;
 	}
-	points = points + guess.length;
+	return all_used;
 }
 
-// function found_word() {
-// 	var i;
+function found_word() {
+	var i;
 
-// 	for (i = 0; i < found; i++) {
-// 	  if (guess == foundlist[i]) {
-// 	    document.getElementById("no-message").style.display = "none";
-// 	    document.getElementById("already-found").style.display = "inline";
-// 	    return 1;
-// 	  }
-// 	}
+	for (i = 0; i < found; i++) {
+		if (guess == foundlist[i]) {
+	    	document.getElementById("no-message").style.display = "none";
+	    	document.getElementById("already-found").style.display = "inline";
+	    	return false;
+	  	}
+	}
+	
+	var is_pangram = add_points_check_pangram();
+	if (is_pangram) {
+		pangram_found += 1;
+		pangram_list.push(guess);
+	}
+	foundlist.push(guess);
+	found += 1;
 
-// 	foundlist.push(guess);
+	// Updating the scoreboard.
+	document.getElementById("points-update").innerHTML = current_score;
+	document.getElementById("word-update").innerHTML = found + "/" + n_words;
+	document.getElementById("answers-update").innerHTML = foundlist.join("<br />");
 
-// 	found = found + 1;
+	update_rank();
 
-// 	add_points();
+	if (found == n_words) {
+		alert("Cette petite abeille porte le nom de Maya!");
+		foundall = true
+	}
 
-// 	document.getElementById("points-update").innerHTML = points;
-// 	document.getElementById("answers-update").innerHTML = foundlist.join("<br />");
+	return true;
+}
 
-// 	update_rank();
+function check() {
+	var center = false, i;
 
-// 	if (found == words) {
-// 	  alert("Congratulations! You found all the words!");
-// 	  all = 1;
-// 	}
+	reinitialize_message();
 
-// 	return 0;
-// }
+	if (load_words === false) {
+		guess = document.getElementById("guess").value.toLowerCase();
+		document.getElementById("player-guess").reset();
+	} else {
+		guess = guess.toLowerCase();
+	}
 
-// function check() {
-// 	var center = 0, i;
+	if (guess.length < 4) {
+	  document.getElementById("no-message").style.display = "none";
+	  document.getElementById("too-short").style.display = "inline";
+	  return false;
+	}
 
-// 	document.getElementById("no-message").style.display = "inline";
-// 	document.getElementById("pangram").style.display = "none";
-// 	document.getElementById("already-found").style.display = "none";
-// 	document.getElementById("center-letter").style.display = "none";
-// 	document.getElementById("too-short").style.display = "none";
-// 	document.getElementById("not-in-list").style.display = "none";
+	for (i = 0; i < guess.length; i++) {
+	  if (guess[i] == letters[6]) {
+	    center = true;  
+		break;
+	  }  
+	}  
 
-// 	if (replaying === 0) {
-// 	  guess = document.getElementById("guess").value.toLowerCase();
-// 	  document.getElementById("player-guess").reset();
-// 	} else {
-// 	  guess = guess.toLowerCase();
-// 	}
+	if (!center) {
+	  document.getElementById("no-message").style.display = "none";
+	  document.getElementById("center-letter").style.display = "inline";
+	  return false;
+	}
 
-// 	for (i = 0; i < guess.length; i++) {
-// 	  if ("7" + guess[i] == letters[6]) {
-// 	    center = 1;
-// 	  }
-// 	}
+	for (i = 0; i < n_words; i++) {
+	  if (guess == wordlist[i]) {
+	    return found_word();
+	  }
+	}
+	document.getElementById("no-message").style.display = "none";
+	document.getElementById("not-in-list").style.display = "inline";
 
-// 	if (guess.length < 4) {
-// 	  document.getElementById("no-message").style.display = "none";
-// 	  document.getElementById("too-short").style.display = "inline";
-// 	  return 1;
-// 	}
+	return false;
+}
 
-// 	if (center == 0) {
-// 	  document.getElementById("no-message").style.display = "none";
-// 	  document.getElementById("center-letter").style.display = "inline";
-// 	  return 1;
-// 	}
+function replay_words() {
+	var i, replay;
 
-// 	for (i = 0; i < words; i++) {
-// 	  if (guess == wordlist[i]) {
-// 	    i = found_word();
-// 	    return i;
-// 	  }
-// 	}
-// 	document.getElementById("no-message").style.display = "none";
-// 	document.getElementById("not-in-list").style.display = "inline";
+	load_words = true;
 
-// 	return 1;
-// }
+	replay = JSON.parse(localStorage.getItem("foundwords"));
 
-// function replay_words() {
-// 	var i, replay;
+	localStorage.removeItem("foundwords");
 
-// 	replaying = 1;
+	for (i = 0; i < replay.length; i++) {
+		guess = replay[i];
 
-// 	replay = JSON.parse(localStorage.getItem("foundwords"));
+		if (check() === false) {
+	    	localStorage.removeItem("foundwords");
 
-// 	localStorage.removeItem("foundwords");
+	    	for (i = 0; i < found; i++) {
+	    		foundlist.pop();
+	    	}
 
-// 	for (i = 0; i < replay.length; i++) {
-// 	  guess = replay[i];
+			foundall = 0;
+			found = 0;
+			current_score = 0;
+			rank = "Tu sais pas jouer, Jack";
 
-// 	  if (check() == 1) {
-// 	    localStorage.removeItem("foundwords");
+			reinitialize_message();
 
-// 	    for (i = 0; i < found; i++) {
-// 	      foundlist.pop();
-// 	    }
+			load_words = false;
 
-// 	    all = 0;
-// 	    found = 0;
-// 	    points = 0;
-// 	    rank = "Newbie";
-// 	    win = 0;
+			return;
+		}
+	}
 
-// 	    document.getElementById("no-message").style.display = "inline";
-// 	    document.getElementById("pangram").style.display = "none";
-// 	    document.getElementById("already-found").style.display = "none";
-// 	    document.getElementById("center-letter").style.display = "none";
-// 	    document.getElementById("too-short").style.display = "none";
-// 	    document.getElementById("not-in-list").style.display = "none";
+	reinitialize_message();
+	load_words = false;
+}
 
-// 	    replaying = 0;
+function daily() {
+	var i;
 
-// 	    return;
-// 	  }
-// 	}
+	daily_play = true;
 
-// 	document.getElementById("no-message").style.display = "inline";
-// 	document.getElementById("pangram").style.display = "none";
-// 	document.getElementById("already-found").style.display = "none";
-// 	document.getElementById("center-letter").style.display = "none";
-// 	document.getElementById("too-short").style.display = "none";
-// 	document.getElementById("not-in-list").style.display = "none";
+	for (i = 0; i < found; i++) {
+	  foundlist.pop();
+	}
 
-// 	replaying = 0;
-// }
+	foundall = 0;
+	found = 0;
+	current_score = 0;
+	rank = "Tu sais pas jouer, Jack";
+	load_words = false;
 
-// function daily() {
-// 	var i;
+	document.getElementById("points-update").innerHTML = current_score;
+	document.getElementById("answers-update").innerHTML = foundlist.join("<br />");
+	document.getElementById("rank-update").innerHTML = rank;
 
-// 	daily_play = 1;
+	for (i = 0; i < 7; i++) {
+		letters[i] = todayletters[i];
+	}
+	n_words = n_wordstoday;
+	max_score = max_score_today;
+	wordlist = todaywordlist;
+	reinitialize_message();
+	set_rank();
+	if (localStorage.hasOwnProperty("foundwords") === true) {
+		replay_words();
+	}
+	display();
+}
 
-// 	for (i = 0; i < found; i++) {
-// 	  foundlist.pop();
-// 	}
+function get_yesterday() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var gameObj = JSON.parse(this.responseText);
+			n_wordsyesterday = gameObj.n_words;
+			max_score_yesterday = gameObj.max_score_today;
+			yesterdaywordlist = gameObj.wordlist;
+			update_yesterday_info();
+	  }
+	};
+	// À enlever pour les tests non-locaux
+	update_yesterday_info();
+	xhttp.open("GET", "yesterday", true);
+	xhttp.send();
+}
 
-// 	all = 0;
-// 	found = 0;
-// 	points = 0;
-// 	rank = "Newbie";
-// 	replaying = 0;
-// 	win = 0;
-
-// 	document.getElementById("points-update").innerHTML = points;
-// 	document.getElementById("answers-update").innerHTML = foundlist.join("<br />");
-// 	document.getElementById("rank-update").innerHTML = rank;
-// 	document.getElementById("yesterday-or-random").innerHTML = "Yesterday's answers";
-// 	document.getElementById("random-answers").style.display = "none";
-// 	document.getElementById("restart-daily-button").style.visibility = "hidden";
-// 	document.getElementById("update-random").innerHTML = "";
-// 	document.getElementById("no-message").style.display = "inline";
-// 	document.getElementById("pangram").style.display = "none";
-// 	document.getElementById("already-found").style.display = "none";
-// 	document.getElementById("center-letter").style.display = "none";
-// 	document.getElementById("too-short").style.display = "none";
-// 	document.getElementById("not-in-list").style.display = "none";
-// 	document.getElementById("play1").style.display = "none";
-// 	document.getElementById("play2").style.display = "none";
-// 	document.getElementById("play3").style.display = "none";
-// 	document.getElementById("play4").style.display = "none";
-// 	document.getElementById("play5").style.display = "none";
-// 	document.getElementById("play6").style.display = "none";
-// 	document.getElementById("play7").style.display = "none";
-
-// 	letters[0] = todayletters[0];
-// 	letters[1] = todayletters[1];
-// 	letters[2] = todayletters[2];
-// 	letters[3] = todayletters[3];
-// 	letters[4] = todayletters[4];
-// 	letters[5] = todayletters[5];
-// 	letters[6] = todayletters[6];
-// 	words = todaywords;
-// 	total = todaytotal;
-// 	wordlist = todaywordlist;
-// 	set_rank();
-// 	if (localStorage.hasOwnProperty("foundwords") === true) {
-// 	  replay_words();
-// 	}
-// 	document.getElementById("update-random").innerHTML = yesterdaywordlist.join("<br />") + "<br />" + "<br />Total words:  " + yesterdaywords + "<br />Total points: " + yesterdaytotal + "<br />Points for Queen Bee: " + Math.floor(yesterdaytotal * 0.70);
-// 	display();
-// }
-
-// function get_yesterday() {
-// 	var xhttp = new XMLHttpRequest();
-// 	xhttp.onreadystatechange = function() {
-// 	  if (this.readyState == 4 && this.status == 200) {
-// 	    var gameObj = JSON.parse(this.responseText);
-// 	    yesterdaywords = gameObj.words;
-// 	    yesterdaytotal = gameObj.total;
-// 	    yesterdaywordlist = gameObj.wordlist;
-// 	  }
-// 	};
-
-// 	xhttp.open("GET", "yesterday", true);
-// 	xhttp.send();
-// }
-
-// function get_today() {
-// 	var xhttp = new XMLHttpRequest();
-// 	xhttp.onreadystatechange = function() {
-// 	  if (this.readyState == 4 && this.status == 200) {
-// 	    var gameObj = JSON.parse(this.responseText);
-// 	    todayletters[0] = gameObj.letters[0];
-// 	    todayletters[1] = gameObj.letters[1];
-// 	    todayletters[2] = gameObj.letters[2];
-// 	    todayletters[3] = gameObj.letters[3];
-// 	    todayletters[4] = gameObj.letters[4];
-// 	    todayletters[5] = gameObj.letters[5];
-// 	    todayletters[6] = "7" + gameObj.center;
-// 	    todaywords = gameObj.words;
-// 	    todaytotal = gameObj.total;
-// 	    todaywordlist = gameObj.wordlist;
-// 	    daily();
-// 	  }
-// 	};
-
-// 	xhttp.open("GET", "today", true);
-// 	xhttp.send();
-// }
+function get_today() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var gameObj = JSON.parse(this.responseText);
+			todayletters[0] = gameObj.letters[0];
+			todayletters[1] = gameObj.letters[1];
+			todayletters[2] = gameObj.letters[2];
+			todayletters[3] = gameObj.letters[3];
+			todayletters[4] = gameObj.letters[4];
+			todayletters[5] = gameObj.letters[5];
+			todayletters[6] = gameObj.center;
+			n_words = gameObj.n_words;
+			max_score_today = gameObj.max_score_today;
+			wordlist = gameObj.wordlist;
+			daily();
+		}
+	};
+	// Ligne à enlever pour les tests non locaux
+	daily();
+	xhttp.open("GET", "today", true);
+	xhttp.send();
+}
 
 window.onload = function() {
-	document.getElementById("comb1").style.height = "160px";
-	document.getElementById("comb1").style.width = "160px";
-	document.getElementById("comb1").style.left = "1px";
-	document.getElementById("comb1").style.top = "61px";
-	document.getElementById("comb2").style.height = "160px";
-	document.getElementById("comb2").style.width = "160px";
-	document.getElementById("comb2").style.left = "105px";
-	document.getElementById("comb2").style.top = "2px";
-	document.getElementById("comb3").style.height = "160px";
-	document.getElementById("comb3").style.width = "160px";
-	document.getElementById("comb3").style.left = "209px";
-	document.getElementById("comb3").style.top = "61px";
-	document.getElementById("comb4").style.height = "160px";
-	document.getElementById("comb4").style.width = "160px";
-	document.getElementById("comb4").style.left = "1px";
-	document.getElementById("comb4").style.top = "181px";
-	document.getElementById("comb5").style.height = "160px";
-	document.getElementById("comb5").style.width = "160px";
-	document.getElementById("comb5").style.left = "105px";
-	document.getElementById("comb5").style.top = "240px";
-	document.getElementById("comb6").style.height = "160px";
-	document.getElementById("comb6").style.width = "160px";
-	document.getElementById("comb6").style.left = "209px";
-	document.getElementById("comb6").style.top = "181px";
-	document.getElementById("comb7").style.height = "160px";
-	document.getElementById("comb7").style.width = "160px";
-	document.getElementById("comb7").style.left = "105px";
-	document.getElementById("comb7").style.top = "121px";
+	untype();
 	get_yesterday();
 	get_today();
 };
@@ -526,16 +449,13 @@ window.onload = function() {
 function shuffle() {
 	var i, j, t;
 	for (i = 5; i > 0; i--) {
-	  j = Math.floor(Math.random() * (i + 1));
-	  t = letters[j];
-	  letters[j] = letters[i];
-	  letters[i] = t;
+		j = Math.floor(Math.random() * (i + 1));
+		t = letters[j];
+		letters[j] = letters[i];
+		letters[i] = t;
 	}
-
 	display();
 }
-
-
 
 function delete_letter() {
 	var str = document.getElementById("guess").value;
@@ -545,6 +465,15 @@ function delete_letter() {
 	document.getElementById("guess").value = str;
 }
 
+function reinitialize_message() {
+	document.getElementById("no-message").style.display = "inline";
+	document.getElementById("pangram").style.display = "none";
+	document.getElementById("already-found").style.display = "none";
+	document.getElementById("center-letter").style.display = "none";
+	document.getElementById("too-short").style.display = "none";
+	document.getElementById("not-in-list").style.display = "none";
+}
+
 function toggle_yesterday_info() {
 	var resultats = document.getElementById("resultats-veille");
     if (resultats.style.display == "none") {
@@ -552,4 +481,12 @@ function toggle_yesterday_info() {
     } else {
         resultats.style.display = "none";
     }
+}
+
+function update_yesterday_info() {
+	document.getElementById("answers-yesterday").innerHTML = yesterdaywordlist.join("<br />");
+	document.getElementById("ruche-infos-veille").innerHTML = " Mots: " + n_wordsyesterday 
+	+ "<br /> Score maximal:  " + max_score_yesterday
+	+ "<br /><br /> Pangrammes: " + pangrams_yesterday
+	+ "<br /> " + pangramlist_yesterday.join("<br />");
 }
