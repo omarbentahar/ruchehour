@@ -1,0 +1,39 @@
+{
+    "day": 0,
+    "letters": [
+        "g",
+        "u",
+        "b",
+        "z",
+        "t",
+        "e"
+    ],
+    "center": "d",
+    "max_score": 117,
+    "n_words": 19,
+    "n_pangrams": 1,
+    "words": [
+        "degue",
+        "debutee",
+        "budgetez",
+        "guede",
+        "bede",
+        "budgetee",
+        "budgete",
+        "debute",
+        "debuggez",
+        "deug",
+        "debugge",
+        "debet",
+        "debuggee",
+        "debutez",
+        "debut",
+        "dette",
+        "budget",
+        "degueu",
+        "etude"
+    ],
+    "pangrammes": [
+        "budgetez"
+    ]
+}
