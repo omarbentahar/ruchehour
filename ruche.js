@@ -399,45 +399,45 @@ function daily() {
 	display();
 }
 
-function get_yesterday() {
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var gameObj = JSON.parse(this.responseText);
-			n_wordsyesterday = gameObj.n_words;
-			max_score_yesterday = gameObj.max_score_today;
-			yesterdaywordlist = gameObj.wordlist;
-			update_yesterday_info();
-	  }
-	};
-	// À enlever pour les tests non-locaux
+function get_yesterday(day) {
+	// var xhttp = new XMLHttpRequest();
+	// xhttp.onreadystatechange = function() {
+	// 	if (this.readyState == 4 && this.status == 200) {
+	// 		var gameObj = JSON.parse(this.responseText);
+	// 		n_wordsyesterday = gameObj.n_words;
+	// 		max_score_yesterday = gameObj.max_score_today;
+	// 		yesterdaywordlist = gameObj.wordlist;
+	// 		update_yesterday_info();
+	//   }
+	// };
+	// À enlever pour les tests non-locaux?
 	update_yesterday_info();
-	xhttp.open("GET", "yesterday", true);
-	xhttp.send();
+	// xhttp.open("GET", "yesterday", true);
+	// xhttp.send();
 }
 
-function get_today() {
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var gameObj = JSON.parse(this.responseText);
-			todayletters[0] = gameObj.letters[0];
-			todayletters[1] = gameObj.letters[1];
-			todayletters[2] = gameObj.letters[2];
-			todayletters[3] = gameObj.letters[3];
-			todayletters[4] = gameObj.letters[4];
-			todayletters[5] = gameObj.letters[5];
-			todayletters[6] = gameObj.center;
-			n_words = gameObj.n_words;
-			max_score_today = gameObj.max_score_today;
-			wordlist = gameObj.wordlist;
-			daily();
-		}
-	};
-	// Ligne à enlever pour les tests non locaux
+function get_today(day) {
+	// var xhttp = new XMLHttpRequest();
+	// xhttp.onreadystatechange = function() {
+	// 	if (this.readyState == 4 && this.status == 200) {
+	// 		var gameObj = JSON.parse(this.responseText);
+	// 		todayletters[0] = gameObj.letters[0];
+	// 		todayletters[1] = gameObj.letters[1];
+	// 		todayletters[2] = gameObj.letters[2];
+	// 		todayletters[3] = gameObj.letters[3];
+	// 		todayletters[4] = gameObj.letters[4];
+	// 		todayletters[5] = gameObj.letters[5];
+	// 		todayletters[6] = gameObj.center;
+	// 		n_words = gameObj.n_words;
+	// 		max_score_today = gameObj.max_score_today;
+	// 		wordlist = gameObj.wordlist;
+	// 		daily();
+	// 	}
+	// };
+	// Ligne à enlever pour les tests non locaux?
 	daily();
-	xhttp.open("GET", "today", true);
-	xhttp.send();
+	// xhttp.open("GET", "today", true);
+	// xhttp.send();
 }
 
 window.onload = function() {
