@@ -264,14 +264,16 @@ function found_word() {
 	    	return false;
 	  	}
 	}
-	
+	// Ajout du mot à la liste avant de compter les points.
+	// Car c'est l'ajout des points qui sauvegarde le mot (add_points calls save_word)	
+	foundlist.push(guess);
+	found += 1;
+	// Ajout des points + Check pangramme
 	var is_pangram = add_points_check_pangram();
 	if (is_pangram) {
 		pangram_found += 1;
 		pangram_list.push(guess);
 	}
-	foundlist.push(guess);
-	found += 1;
 
 	// Updating the scoreboard.
 	document.getElementById("points-update").innerHTML = current_score;
@@ -334,17 +336,13 @@ function replay_words() {
 	var i, replay;
 
 	load_words = true;
-
 	replay = JSON.parse(localStorage.getItem("foundwords"));
-
 	localStorage.removeItem("foundwords");
 
 	for (i = 0; i < replay.length; i++) {
 		guess = replay[i];
-
-		if (check() === false) {
+		if (check() == false) {
 	    	localStorage.removeItem("foundwords");
-
 	    	for (i = 0; i < found; i++) {
 	    		foundlist.pop();
 	    	}

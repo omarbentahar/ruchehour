@@ -33,9 +33,9 @@ def filter_dictionnary(filter_length = 4):
     return filtered_wordset
 
 
-def generation_ruche(n_ruches = 2, min_words = 30, min_pangrammes = 1, max_score_min = 100, \
+def generation_ruche(n_ruches = 1500, min_words = 30, min_pangrammes = 1, max_score_min = 100, \
                     n_letters = 7, filter_length = 4, pangram_bonus = 7):
-    random.seed(0)
+    random.seed(42)
     filtered_wordset = filter_dictionnary(filter_length)
     # Ruches Counter
     ruches_generees = 0
@@ -74,9 +74,10 @@ def generation_ruche(n_ruches = 2, min_words = 30, min_pangrammes = 1, max_score
             "max_score": max_score, "n_words": n_words, "n_pangrams": n_pangrams, \
                 "words": wordlist, "pangrammes": pangramlist}
             ruche_list.append(ruche)
-            print(f"\n\nLettres: {letters}\nScore Max: {max_score} - Nombre de mots: {n_words} - Nombre de pangrammes: {n_pangrams}\nListe des pangrammes: {pangramlist}\nListe des mots: {wordlist}")
+            # print(f"\n\nLettres: {letters}\nScore Max: {max_score} - Nombre de mots: {n_words} - Nombre de pangrammes: {n_pangrams}\nListe des pangrammes: {pangramlist}\nListe des mots: {wordlist}")
             # Generating corresponding json
             ruches_generees += 1
+            print(ruches_generees)
 
     with open("ruches.json", "a") as ruche_file:
         ruche_file.write(json.dumps(ruche_list, indent = 4))
