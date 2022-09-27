@@ -20,20 +20,20 @@ for (var i = 0; i < 8; i++) {
 }
 
 // Mise en place du jeu.
-var day, foundall;
+var today;
 var daily_play;
-var letters = ["s","u","t","e","j","m","n"], todayletters = ["s","u","t","e","j","m","n"];
+var letters = [], todayletters = [];
 var found, foundlist = [];
 var pangram_found, pangram_list = [];
 var current_score;
 var guess;
 var load_words;
-var pangrams_yesterday = 1, pangramlist_yesterday = ["dejetteriez"];
+var pangrams_yesterday, pangramlist_yesterday = [];
 var rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9;
-var max_score = 1087, max_score_today = 1087, max_score_yesterday = 1282;
-var n_words = 173, wordlist = ["mesusent","neems","ente","menses","nettes","nette","neem","sennes","stents","jeun","tussent","justement","nems","mnemes","menteuse","tunes","nemeens","jutent","menus","tennesse","nettetes","tenesmes","sens","sement","jettent","sene","entetes","mettent","juments","entent","nees","sentes","tuneuses","nemeennes","jeunee","tunees","nemes","ment","menees","entetees","senes","tuent","sente","jeunees","nets","nuent","etetements","sustentees","entente","jejunums","entetent","entees","jeuneuse","teneuse","stent","tenements","menues","mesentente","nenets","nument","jeunes","muent","menue","senses","enjeu","jeunet","menes","nettement","mesententes","junte","sensee","sustente","mense","jeunesse","menteuses","jeunette","sustentes","tente","jumentes","etetement","emmenees","emmenee","usent","emmenent","nettete","nemeen","entetement","juntes","ententes","sustentee","mentes","unes","entete","mente","sent","eussent","meneuse","menu","testent","nenes","sense","neuneu","tenues","tetent","mneme","tenue","mens","nemeenne","musent","tentee","tentees","mussent","emmenes","sensement","tenu","etetent","nenette","nuement","menee","sensees","menuets","sustentent","tentent","mutent","tune","tunent","entes","tenement","neuneus","neume","jeunettes","usnee","jument","meneuses","jeuneuses","mene","neumes","tenesme","nene","nuees","eumenes","usnees","nues","tennesses","tunee","jeunement","menuet","menent","sussent","senne","suent","nenettes","eumene","teneuses","entetements","entetee","sentent","tenus","emettent","tentes","emmene","jeune","jumente","entee","nuee","mentent","jejunum","jeunent","memement","tuneuse","emussent","jeunesses","jeunets"];
-var n_wordstoday = 173, todaywordlist = ["mesusent","neems","ente","menses","nettes","nette","neem","sennes","stents","jeun","tussent","justement","nems","mnemes","menteuse","tunes","nemeens","jutent","menus","tennesse","nettetes","tenesmes","sens","sement","jettent","sene","entetes","mettent","juments","entent","nees","sentes","tuneuses","nemeennes","jeunee","tunees","nemes","ment","menees","entetees","senes","tuent","sente","jeunees","nets","nuent","etetements","sustentees","entente","jejunums","entetent","entees","jeuneuse","teneuse","stent","tenements","menues","mesentente","nenets","nument","jeunes","muent","menue","senses","enjeu","jeunet","menes","nettement","mesententes","junte","sensee","sustente","mense","jeunesse","menteuses","jeunette","sustentes","tente","jumentes","etetement","emmenees","emmenee","usent","emmenent","nettete","nemeen","entetement","juntes","ententes","sustentee","mentes","unes","entete","mente","sent","eussent","meneuse","menu","testent","nenes","sense","neuneu","tenues","tetent","mneme","tenue","mens","nemeenne","musent","tentee","tentees","mussent","emmenes","sensement","tenu","etetent","nenette","nuement","menee","sensees","menuets","sustentent","tentent","mutent","tune","tunent","entes","tenement","neuneus","neume","jeunettes","usnee","jument","meneuses","jeuneuses","mene","neumes","tenesme","nene","nuees","eumenes","usnees","nues","tennesses","tunee","jeunement","menuet","menent","sussent","senne","suent","nenettes","eumene","teneuses","entetements","entetee","sentent","tenus","emettent","tentes","emmene","jeune","jumente","entee","nuee","mentent","jejunum","jeunent","memement","tuneuse","emussent","jeunesses","jeunets"];
-var n_wordsyesterday = 192, yesterdaywordlist = ["riziere","triee","deterrez","redit","reeditiez","detirerez","eteterez","tiret","territ","titrez","detiree","terriere","editer","tirer","dire","rizerie","irritiez","reiterer","tire","dedier","terrer","etirez","tirez","irritee","ririez","detire","titriez","tetiere","triiez","etirerez","reitererez","rejetiez","retirer","triere","derideriez","eteteriez","reeditez","reitre","ridee","ridez","reiez","etier","deterrerez","reiteriez","dedirez","redie","rire","rejetee","errez","deterriez","rejetterez","dediriez","tritie","rejeter","errerez","redite","deterre","terree","ridiez","deterreriez","terrirez","reitere","terrier","dedierez","tritiee","trieriez","trie","tertre","reedite","iteree","reiteree","irrite","reerez","editeriez","iterer","teter","tiediriez","terrir","trierez","reer","deride","rejette","erriez","detiriez","trier","itereriez","dedire","teteriez","reeriez","tiree","iridie","riez","iterez","triedre","rediriez","deridez","jeter","retiriez","tireriez","detirez","zire","terre","tirerez","etireriez","dedieriez","reiterez","rejetteriez","jetterez","etire","jetteriez","retire","deterree","reez","riderez","etiree","deterrer","reediter","dejeter","ziride","terreriez","etre","irriter","detireriez","terririez","diedre","itere","teterez","riiez","treize","erre","irritez","diriez","terrerez","dejetteriez","etirer","retirez","terri","jerez","tiedirez","deriderez","direz","rejetez","titrerez","retiree","derriere","titree","reeditee","redirez","terrez","tiriez","eteter","reediteriez","titreriez","ride","redire","rirez","etiriez","deridiez","rideriez","iriez","retirerez","titre","deridee","rider","dejetterez","iteriez","iridee","editerez","erreriez","retireriez","terriez","reediterez","rizette","errer","rite","iridiee","itererez","derider","rejet","titrer","eider","detirer","etrier","tridi","reitereriez","tirette","irez","irriterez","triez","rejete","tiedir","irriteriez"];
+var max_score, max_score_today, max_score_yesterday;
+var n_words, wordlist = [];
+var n_wordstoday, todaywordlist = [];
+var n_wordsyesterday, yesterdaywordlist = [];
 
 
 // Ajout d'une lettre au mot en cours - l'alvéole se contracte au clic.
@@ -284,7 +284,6 @@ function found_word() {
 
 	if (found == n_words) {
 		alert("Cette petite abeille porte le nom de Maya!");
-		foundall = true
 	}
 
 	return true;
@@ -347,7 +346,6 @@ function replay_words() {
 	    		foundlist.pop();
 	    	}
 
-			foundall = 0;
 			found = 0;
 			current_score = 0;
 			rank = "Tu sais pas jouer, Jack";
@@ -373,7 +371,6 @@ function daily() {
 	  foundlist.pop();
 	}
 
-	foundall = 0;
 	found = 0;
 	current_score = 0;
 	rank = "Tu sais pas jouer, Jack";
@@ -397,51 +394,44 @@ function daily() {
 	display();
 }
 
-function get_yesterday(day) {
-	// var xhttp = new XMLHttpRequest();
-	// xhttp.onreadystatechange = function() {
-	// 	if (this.readyState == 4 && this.status == 200) {
-	// 		var gameObj = JSON.parse(this.responseText);
-	// 		n_wordsyesterday = gameObj.n_words;
-	// 		max_score_yesterday = gameObj.max_score_today;
-	// 		yesterdaywordlist = gameObj.wordlist;
-	// 		update_yesterday_info();
-	//   }
-	// };
-	// À enlever pour les tests non-locaux?
-	update_yesterday_info();
-	// xhttp.open("GET", "yesterday", true);
-	// xhttp.send();
-}
 
-function get_today(day) {
-	// var xhttp = new XMLHttpRequest();
-	// xhttp.onreadystatechange = function() {
-	// 	if (this.readyState == 4 && this.status == 200) {
-	// 		var gameObj = JSON.parse(this.responseText);
-	// 		todayletters[0] = gameObj.letters[0];
-	// 		todayletters[1] = gameObj.letters[1];
-	// 		todayletters[2] = gameObj.letters[2];
-	// 		todayletters[3] = gameObj.letters[3];
-	// 		todayletters[4] = gameObj.letters[4];
-	// 		todayletters[5] = gameObj.letters[5];
-	// 		todayletters[6] = gameObj.center;
-	// 		n_words = gameObj.n_words;
-	// 		max_score_today = gameObj.max_score_today;
-	// 		wordlist = gameObj.wordlist;
-	// 		daily();
-	// 	}
-	// };
-	// Ligne à enlever pour les tests non locaux?
+async function get_data(today) {
+	var i;
+	yesterday = (today + 1499) % 1500;
+	var path_today = "./ruches/ruche_" + today.toString() + ".json";
+	var path_yesterday = "./ruches/ruche_" + yesterday.toString() + ".json";
+	await fetch(path_today)
+		.then(response => response.json())
+		.then(data_today => {
+			max_score_today = data_today["max_score"];
+			for (i = 0; i < 6; i++){
+				todayletters[i] = data_today["letters"][i];
+			}
+			todayletters[6] = data_today["center"];
+			n_wordstoday = data_today["n_words"];
+			todaywordlist = data_today["words"];
+		})
+	;
+	await fetch(path_yesterday)
+		.then(response => response.json())
+		.then(data_previous => {
+			max_score_yesterday = data_previous["max_score"];
+			n_wordsyesterday = data_previous["n_words"];
+			yesterdaywordlist = data_previous["words"];
+			pangrams_yesterday = data_previous["n_pangrams"];
+			pangramlist_yesterday = data_previous["pangrammes"];
+		})
+	;
 	daily();
-	// xhttp.open("GET", "today", true);
-	// xhttp.send();
+	update_previous_info();
 }
 
 window.onload = function() {
+	// Setting up display.
 	untype();
-	get_yesterday();
-	get_today();
+	// Getting data
+	today = get_day();
+	get_data(today);
 };
 
 function shuffle() {
@@ -481,10 +471,15 @@ function toggle_yesterday_info() {
     }
 }
 
-function update_yesterday_info() {
+function update_previous_info() {
 	document.getElementById("answers-yesterday").innerHTML = yesterdaywordlist.join("<br />");
 	document.getElementById("ruche-infos-veille").innerHTML = " Mots: " + n_wordsyesterday 
 	+ "<br /> Score maximal:  " + max_score_yesterday
 	+ "<br /><br /> Pangrammes: " + pangrams_yesterday
 	+ "<br /> " + pangramlist_yesterday.join("<br />");
+}
+
+function get_day() {
+	const now = new Date();
+	return Math.floor(now.getTime() / (2*86400*1000)) % 1500;
 }
