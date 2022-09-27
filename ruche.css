@@ -216,3 +216,8 @@ img {
 img.bg {
   display: block;
 }
+
+.rules {
+  text-align: left;
+  font-size: 20px;
+}
