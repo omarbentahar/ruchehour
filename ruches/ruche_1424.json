@@ -1,0 +1,50 @@
+{
+    "day": 1424,
+    "letters": [
+        "u",
+        "z",
+        "e",
+        "r",
+        "d",
+        "s"
+    ],
+    "center": "x",
+    "max_score": 189,
+    "n_words": 30,
+    "n_pangrams": 1,
+    "words": [
+        "sexees",
+        "sexez",
+        "exsudez",
+        "sexeuses",
+        "sexerez",
+        "xerus",
+        "sexeurs",
+        "sexe",
+        "sexes",
+        "exsudee",
+        "sexue",
+        "sexuee",
+        "exedres",
+        "exsuder",
+        "exedre",
+        "sexues",
+        "exsuderez",
+        "exsudees",
+        "sereux",
+        "exsudes",
+        "sexer",
+        "xeres",
+        "sexee",
+        "exsude",
+        "exereses",
+        "sexuees",
+        "deux",
+        "sexeuse",
+        "exerese",
+        "sexeur"
+    ],
+    "pangrammes": [
+        "exsuderez"
+    ]
+}

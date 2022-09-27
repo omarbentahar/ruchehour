@@ -87,6 +87,5 @@ def generation_ruche(n_ruches = 1500, min_words = 30, min_pangrammes = 1, max_sc
 
 
 if __name__ == "__main__":
-    kwargs = {}
     generation_ruche()
 

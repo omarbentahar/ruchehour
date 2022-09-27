@@ -1,0 +1,53 @@
+{
+    "day": 782,
+    "letters": [
+        "u",
+        "o",
+        "m",
+        "a",
+        "s",
+        "r"
+    ],
+    "center": "y",
+    "max_score": 150,
+    "n_words": 33,
+    "n_pangrams": 1,
+    "words": [
+        "royaumas",
+        "youyou",
+        "raya",
+        "soyas",
+        "mamy",
+        "aymara",
+        "mayos",
+        "moyas",
+        "mammy",
+        "youyous",
+        "mayo",
+        "yams",
+        "yass",
+        "arroyo",
+        "maury",
+        "maurys",
+        "yoyo",
+        "mamys",
+        "arroyos",
+        "rays",
+        "sammys",
+        "soya",
+        "moya",
+        "mayas",
+        "royauma",
+        "yoyos",
+        "mammys",
+        "maya",
+        "sammy",
+        "aymaras",
+        "yassas",
+        "rayas",
+        "yassa"
+    ],
+    "pangrammes": [
+        "royaumas"
+    ]
+}

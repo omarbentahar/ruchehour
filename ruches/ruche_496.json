@@ -1,0 +1,51 @@
+{
+    "day": 496,
+    "letters": [
+        "s",
+        "p",
+        "l",
+        "e",
+        "o",
+        "n"
+    ],
+    "center": "h",
+    "max_score": 202,
+    "n_words": 31,
+    "n_pangrams": 1,
+    "words": [
+        "helepoles",
+        "sheols",
+        "phosphene",
+        "helee",
+        "phones",
+        "hele",
+        "phonon",
+        "phos",
+        "henne",
+        "phleoles",
+        "helepole",
+        "phonos",
+        "hennes",
+        "shoshones",
+        "sphenes",
+        "phosphenes",
+        "phenol",
+        "helons",
+        "hellene",
+        "phono",
+        "phone",
+        "heles",
+        "sheol",
+        "phonons",
+        "shoshone",
+        "phleole",
+        "hellenes",
+        "phenols",
+        "helees",
+        "sphene",
+        "hello"
+    ],
+    "pangrammes": [
+        "phenols"
+    ]
+}

@@ -1,0 +1,50 @@
+{
+    "day": 1158,
+    "letters": [
+        "x",
+        "o",
+        "g",
+        "v",
+        "i",
+        "u"
+    ],
+    "center": "a",
+    "max_score": 110,
+    "n_words": 30,
+    "n_pangrams": 1,
+    "words": [
+        "vogua",
+        "vaguai",
+        "ixai",
+        "gava",
+        "giga",
+        "axoa",
+        "guai",
+        "ogivaux",
+        "voua",
+        "avouai",
+        "aviva",
+        "voguai",
+        "avoua",
+        "vagua",
+        "axai",
+        "giguai",
+        "vaux",
+        "aigu",
+        "gavai",
+        "gigua",
+        "ixia",
+        "uvaux",
+        "agio",
+        "vagaux",
+        "agui",
+        "vagi",
+        "avivai",
+        "axiaux",
+        "vouai",
+        "gaga"
+    ],
+    "pangrammes": [
+        "ogivaux"
+    ]
+}

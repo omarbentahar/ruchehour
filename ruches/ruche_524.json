@@ -1,0 +1,53 @@
+{
+    "day": 524,
+    "letters": [
+        "e",
+        "q",
+        "x",
+        "i",
+        "u",
+        "n"
+    ],
+    "center": "o",
+    "max_score": 159,
+    "n_words": 33,
+    "n_pangrams": 1,
+    "words": [
+        "nonne",
+        "ionique",
+        "ouin",
+        "quinone",
+        "nioueenne",
+        "nono",
+        "inouie",
+        "union",
+        "nounou",
+        "noix",
+        "ennoie",
+        "xenon",
+        "equinoxe",
+        "exon",
+        "oxonienne",
+        "neon",
+        "noueux",
+        "enoue",
+        "ionone",
+        "noue",
+        "ionien",
+        "enouee",
+        "nouee",
+        "quoique",
+        "inox",
+        "ouie",
+        "none",
+        "ionienne",
+        "inoui",
+        "quoi",
+        "noie",
+        "oxonien",
+        "nioueen"
+    ],
+    "pangrammes": [
+        "equinoxe"
+    ]
+}

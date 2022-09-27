@@ -1,0 +1,52 @@
+{
+    "day": 52,
+    "letters": [
+        "l",
+        "n",
+        "c",
+        "t",
+        "i",
+        "e"
+    ],
+    "center": "k",
+    "max_score": 174,
+    "n_words": 31,
+    "n_pangrams": 2,
+    "words": [
+        "kiki",
+        "tiki",
+        "like",
+        "ticket",
+        "nickele",
+        "kinine",
+        "kine",
+        "nickellent",
+        "enkikinee",
+        "nickel",
+        "nikkei",
+        "tekee",
+        "enkikinent",
+        "teke",
+        "nickelent",
+        "click",
+        "kilt",
+        "teckel",
+        "kite",
+        "kittitienne",
+        "nickelee",
+        "nickelle",
+        "likent",
+        "kittitien",
+        "likee",
+        "kick",
+        "teck",
+        "keke",
+        "enkikine",
+        "neck",
+        "nickeline"
+    ],
+    "pangrammes": [
+        "nickellent",
+        "nickelent"
+    ]
+}

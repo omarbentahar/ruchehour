@@ -1,0 +1,52 @@
+{
+    "day": 723,
+    "letters": [
+        "r",
+        "a",
+        "o",
+        "n",
+        "d",
+        "e"
+    ],
+    "center": "x",
+    "max_score": 178,
+    "n_words": 32,
+    "n_pangrams": 1,
+    "words": [
+        "exonerera",
+        "annexer",
+        "exonere",
+        "exoneree",
+        "annexera",
+        "xenon",
+        "axoa",
+        "doxa",
+        "xoanon",
+        "exon",
+        "annexa",
+        "addax",
+        "exode",
+        "oxer",
+        "exondera",
+        "annexee",
+        "exorde",
+        "exedre",
+        "exonera",
+        "exonda",
+        "axee",
+        "axer",
+        "exonder",
+        "exonde",
+        "donax",
+        "annexe",
+        "exonerer",
+        "axene",
+        "exondee",
+        "axone",
+        "axera",
+        "redox"
+    ],
+    "pangrammes": [
+        "exondera"
+    ]
+}
