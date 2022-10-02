@@ -429,6 +429,7 @@ async function get_data(today) {
 window.onload = function() {
 	// Setting up display.
 	untype();
+	update_ruche_calendar();
 	// Getting data
 	today = get_day();
 	get_data(today);
@@ -482,4 +483,18 @@ function update_previous_info() {
 function get_day() {
 	const now = new Date();
 	return Math.floor(now.getTime() / (2*86400*1000)) % 1500;
+}
+
+function update_ruche_calendar() {
+	const now = new Date();
+	var passed = now.getTime() / (2*86400*1000);
+	var ruche_id = passed % 1500;
+	var ruches_number = Math.floor((ruche_id + 870) % 1500);
+	if (passed - Math.floor(passed) < 0.5) {
+		var playday = 1;
+	}
+	else {
+		var playday = 2;
+	}
+	document.getElementById("numero").innerHTML += "Ruche n<sup>o</sup> " + ruches_number + "<br/>Jour " + playday;
 }
