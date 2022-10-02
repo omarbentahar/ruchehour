@@ -403,13 +403,13 @@ async function get_data(current) {
 	await fetch(path_current)
 		.then(response => response.json())
 		.then(data_current => {
-			max_score_today = data_today["max_score"];
+			max_score_today = data_current["max_score"];
 			for (i = 0; i < 6; i++){
-				todayletters[i] = data_today["letters"][i];
+				todayletters[i] = data_current["letters"][i];
 			}
-			todayletters[6] = data_today["center"];
-			n_wordstoday = data_today["n_words"];
-			todaywordlist = data_today["words"];
+			todayletters[6] = data_current["center"];
+			n_wordstoday = data_current["n_words"];
+			todaywordlist = data_current["words"];
 		})
 	;
 	await fetch(path_previous)
