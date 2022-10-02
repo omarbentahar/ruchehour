@@ -36,7 +36,8 @@
     
     <!-- Aire de jeu -->
     <a name="top"></a>
-    <h2 id="play">La Ruche du jour</h2>
+    <h2 id="play">La Ruche</h2>
+    <h3 id="numero"></h3>
     <div id="game">
       <div id="playfield">
 	      <div id="playfield-bg">
@@ -111,17 +112,17 @@
 
     <hr>
     
-    <!-- Bouton pour la ruche de la veille -->
+    <!-- Bouton pour la ruche précédente -->
     <div id = "bouton-veille" class="game-buttons">
-      <button onclick="toggle_yesterday_info()">Ruche de la veille On/Off</button>
+      <button onclick="toggle_yesterday_info()">Ruche précédente On/Off</button>
     </div>
 
     <br />
 
-    <!-- Ruche de la veille -->
+    <!-- Ruche précédente -->
     <div class="wordlists" id = "resultats-veille" style="display: none;">
         <div class="word-answers">
-          <h4 class="answers">Mots de la veille</h4>
+          <h4 class="answers">Mots à trouver</h4>
           <div id="answers-yesterday" class="update-answers"></div>
         </div>
         <div class="infos-ruche">
