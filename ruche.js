@@ -395,24 +395,24 @@ function daily() {
 }
 
 
-async function get_data(current) {
+async function get_data(today) {
 	var i;
-	previous = (current + 1499) % 1500;
-	var path_current = "./ruches/ruche_" + current.toString() + ".json";
-	var path_previous = "./ruches/ruche_" + previous.toString() + ".json";
-	await fetch(path_current)
+	yesterday = (today + 1499) % 1500;
+	var path_today = "./ruches/ruche_" + today.toString() + ".json";
+	var path_yesterday = "./ruches/ruche_" + yesterday.toString() + ".json";
+	await fetch(path_today)
 		.then(response => response.json())
-		.then(data_current => {
-			max_score_today = data_current["max_score"];
+		.then(data_today => {
+			max_score_today = data_today["max_score"];
 			for (i = 0; i < 6; i++){
-				todayletters[i] = data_current["letters"][i];
+				todayletters[i] = data_today["letters"][i];
 			}
-			todayletters[6] = data_current["center"];
-			n_wordstoday = data_current["n_words"];
-			todaywordlist = data_current["words"];
+			todayletters[6] = data_today["center"];
+			n_wordstoday = data_today["n_words"];
+			todaywordlist = data_today["words"];
 		})
 	;
-	await fetch(path_previous)
+	await fetch(path_yesterday)
 		.then(response => response.json())
 		.then(data_previous => {
 			max_score_yesterday = data_previous["max_score"];
@@ -430,9 +430,8 @@ window.onload = function() {
 	// Setting up display.
 	untype();
 	// Getting data
-	data_pointer = get_day();
-	document.getElementById("numero").innerHTML += "Ruche n<sup>o</sup>" + (data_pointer[0] + 870) % 1500 + ": Jour " + data_pointer[1];
-	get_data(data_pointer[0]);
+	today = get_day();
+	get_data(today);
 };
 
 function shuffle() {
@@ -481,14 +480,6 @@ function update_previous_info() {
 }
 
 function get_day() {
-	const now = new Date().getTime() / (2*86400*1000);
-	var ruche_id = Math.floor(now) % 1500;
-	var daypresent; 
-	if (now - Math.floor(now) < 0.5) {
-		daypresent = 1;
-	}
-	else {
-		daypresent = 2;
-	}
-	return [ruche_id, daypresent];
+	const now = new Date();
+	return Math.floor(now.getTime() / (2*86400*1000)) % 1500;
 }
