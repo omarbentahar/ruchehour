@@ -31,8 +31,6 @@ var load_words;
 var pangrams_yesterday, pangramlist_yesterday = [];
 var rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9;
 var max_score, max_score_today, max_score_yesterday;
-var n_pangrams, pangramlist = [];
-var n_pangramstoday, pangramlisttoday = []
 var n_words, wordlist = [];
 var n_wordstoday, todaywordlist = [];
 var n_wordsyesterday, yesterdaywordlist = [];
@@ -280,7 +278,6 @@ function found_word() {
 	// Updating the scoreboard.
 	document.getElementById("points-update").innerHTML = current_score;
 	document.getElementById("word-update").innerHTML = found + "/" + n_words;
-	document.getElementById("pangramme-update").innerHTML = pangram_found + "/" + n_words;
 	document.getElementById("answers-update").innerHTML = foundlist.join("<br />");
 
 	update_rank();
@@ -387,10 +384,8 @@ function daily() {
 		letters[i] = todayletters[i];
 	}
 	n_words = n_wordstoday;
-	n_pangrams = n_pangramstoday;
 	max_score = max_score_today;
 	wordlist = todaywordlist;
-	pangramlist = pangramlisttoday;
 	reinitialize_message();
 	set_rank();
 	if (localStorage.hasOwnProperty("foundwords") === true) {
@@ -425,8 +420,6 @@ async function get_data(today) {
 			max_score_yesterday = data_previous["max_score"];
 			n_wordsyesterday = data_previous["n_words"];
 			yesterdaywordlist = data_previous["words"];
-			pangrams_yesterday = data_previous["n_pangrams"];
-			pangramlist_yesterday = data_previous["pangrammes"];
 		})
 	;
 	daily();
