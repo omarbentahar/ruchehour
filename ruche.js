@@ -410,8 +410,6 @@ async function get_data(today) {
 			todayletters[6] = data_today["center"];
 			n_wordstoday = data_today["n_words"];
 			todaywordlist = data_today["words"];
-			n_pangramstoday = data_today["n_pangrams"];
-			pangramlisttoday = data_today["pangrammes"];
 		})
 	;
 	await fetch(path_yesterday)
@@ -420,6 +418,8 @@ async function get_data(today) {
 			max_score_yesterday = data_previous["max_score"];
 			n_wordsyesterday = data_previous["n_words"];
 			yesterdaywordlist = data_previous["words"];
+			pangrams_yesterday = data_previous["n_pangrams"];
+			pangramlist_yesterday = data_previous["pangrammes"];
 		})
 	;
 	daily();
