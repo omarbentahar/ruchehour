@@ -351,6 +351,7 @@ function replay_words() {
 	    	}
 
 			found = 0;
+			pangram_found = 0;
 			current_score = 0;
 			rank = "Tu sais pas jouer, Jack";
 
@@ -376,6 +377,7 @@ function daily() {
 	}
 
 	found = 0;
+	pangram_found = 0;
 	current_score = 0;
 	rank = "Tu sais pas jouer, Jack";
 	load_words = false;
