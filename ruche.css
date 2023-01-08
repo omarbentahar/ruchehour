@@ -140,21 +140,21 @@ a, .subtitle {
 }
 
 .points {
-  width: 30%;
+  width: 25%;
   height: 100%;
   float: left;
   text-align: center;
 }
 
 .mots{
-  width: 30%;
+  width: 25%;
   height: 100%;
   float: left;
   text-align: center;
 }
 
 .rank {
-  width: 30%;
+  width: 25%;
   height: 100%;
   float: left;
   text-align: center;
@@ -166,28 +166,21 @@ a, .subtitle {
 }
 
 .word-answers {
-  width: 50%;
+  width: 40%;
   height: 100%;
   float: left;
+  padding: 5%;
 }
 
 .infos-ruche {
-  width: 50%;
+  width: 40%;
   height: 100%;
   float: left;
   text-align: left;
+  padding: 5%;
 }
 
-#ruche-infos {
-  display: block;
-  width: 225px;
-  height: 150px;
-  border: solid;
-  float: right;
-  overflow: auto;
-}
-
-#ruche-infos-veille {
+#ruche-precedente {
   display: block;
   width: 225px;
   height: 150px;
@@ -199,11 +192,11 @@ a, .subtitle {
 .update-answers {
   height: 150px;
   border: solid;
-  overflow: scroll;
+  overflow: auto;
   text-align: left;
 }
 
-.answers {
+.box_titles {
   text-align: center;
 }
 

@@ -24,16 +24,18 @@ var today;
 var daily_play;
 var letters = [], todayletters = [];
 var found, foundlist = [];
-var pangram_found, pangram_list = [];
+var pangram_found, pangrams_foundlist = [];
 var current_score;
 var guess;
 var load_words;
-var pangrams_yesterday, pangramlist_yesterday = [];
 var rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9;
 var max_score, max_score_today, max_score_yesterday;
 var n_words, wordlist = [];
 var n_wordstoday, todaywordlist = [];
 var n_wordsyesterday, yesterdaywordlist = [];
+var n_pangrams, pangramlist = [];
+var n_pangramstoday, todaypangramlist = [];
+var n_pangramsyesterday, yesterdaypangramlist = [];
 
 
 // Ajout d'une lettre au mot en cours - l'alvéole se contracte au clic.
@@ -265,20 +267,22 @@ function found_word() {
 	  	}
 	}
 	// Ajout du mot à la liste avant de compter les points.
-	// Car c'est l'ajout des points qui sauvegarde le mot (add_points calls save_word)	
+	// On sauve le mot en ajoutant les points (add_points calls save_word)	
 	foundlist.push(guess);
 	found += 1;
 	// Ajout des points + Check pangramme
 	var is_pangram = add_points_check_pangram();
 	if (is_pangram) {
 		pangram_found += 1;
-		pangram_list.push(guess);
+		pangrams_foundlist.push(guess);
 	}
 
 	// Updating the scoreboard.
 	document.getElementById("points-update").innerHTML = current_score;
-	document.getElementById("word-update").innerHTML = found + "/" + n_words;
+	document.getElementById("wordcount-update").innerHTML = found + "/" + n_words;
+	document.getElementById("pangramcount-update").innerHTML = pangram_found + "/" + n_pangrams;
 	document.getElementById("answers-update").innerHTML = foundlist.join("<br />");
+	document.getElementById("pangrams-update").innerHTML = pangrams_foundlist.join("<br />");
 
 	update_rank();
 
@@ -378,14 +382,17 @@ function daily() {
 
 	document.getElementById("points-update").innerHTML = current_score;
 	document.getElementById("answers-update").innerHTML = foundlist.join("<br />");
+	document.getElementById("pangrams-update").innerHTML = pangrams_foundlist.join("<br />");
 	document.getElementById("rank-update").innerHTML = rank;
 
 	for (i = 0; i < 7; i++) {
 		letters[i] = todayletters[i];
 	}
-	n_words = n_wordstoday;
 	max_score = max_score_today;
+	n_words = n_wordstoday;
 	wordlist = todaywordlist;
+	n_pangrams = n_pangramstoday;
+	pangramlist = todaypangramlist;
 	reinitialize_message();
 	set_rank();
 	if (localStorage.hasOwnProperty("foundwords") === true) {
@@ -403,13 +410,15 @@ async function get_data(today) {
 	await fetch(path_today)
 		.then(response => response.json())
 		.then(data_today => {
-			max_score_today = data_today["max_score"];
 			for (i = 0; i < 6; i++){
 				todayletters[i] = data_today["letters"][i];
 			}
 			todayletters[6] = data_today["center"];
+			max_score_today = data_today["max_score"];
 			n_wordstoday = data_today["n_words"];
 			todaywordlist = data_today["words"];
+			n_pangramstoday = data_today["n_pangrams"];
+			todaypangramlist = data_today["pangrammes"];
 		})
 	;
 	await fetch(path_yesterday)
@@ -418,8 +427,8 @@ async function get_data(today) {
 			max_score_yesterday = data_previous["max_score"];
 			n_wordsyesterday = data_previous["n_words"];
 			yesterdaywordlist = data_previous["words"];
-			pangrams_yesterday = data_previous["n_pangrams"];
-			pangramlist_yesterday = data_previous["pangrammes"];
+			n_pangramsyesterday = data_previous["n_pangrams"];
+			yesterdaypangramlist = data_previous["pangrammes"];
 		})
 	;
 	daily();
@@ -474,10 +483,10 @@ function toggle_yesterday_info() {
 
 function update_previous_info() {
 	document.getElementById("answers-yesterday").innerHTML = yesterdaywordlist.join("<br />");
-	document.getElementById("ruche-infos-veille").innerHTML = " Mots: " + n_wordsyesterday 
+	document.getElementById("ruche-precedente").innerHTML = " Mots: " + n_wordsyesterday 
 	+ "<br /> Score maximal:  " + max_score_yesterday
-	+ "<br /><br /> Pangrammes: " + pangrams_yesterday
-	+ "<br /> " + pangramlist_yesterday.join("<br />");
+	+ "<br /><br /> Pangrammes: " + n_pangramsyesterday
+	+ "<br /> " + yesterdaypangramlist.join("<br />");
 }
 
 function get_day() {
