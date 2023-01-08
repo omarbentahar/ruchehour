@@ -24,7 +24,7 @@ var today;
 var daily_play;
 var letters = [], todayletters = [];
 var found, foundlist = [];
-var pangram_found, pangrams_foundlist = [];
+var pangram_found = 0, pangrams_foundlist = [];
 var current_score;
 var guess;
 var load_words;
